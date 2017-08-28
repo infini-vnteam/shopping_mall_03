@@ -1,0 +1,154 @@
+<aside id="fh5co-hero" class="js-fullheight">
+    <div class="flexslider js-fullheight">
+        <ul class="slides">
+            <?php foreach ($saleProducts as $newProduct) { ?>
+                <li style="background-image: url(<?php echo $newProduct->getImage() ?>);
+                        background-position: top;
+                        /*background-size: auto 600px;*/
+                        background-color:    #E3E8E2">
+                    <div class="overlay-gradient"></div>
+                    <div class="container">
+                        <div class="col-md-6 col-md-offset-3 col-md-pull-3 js-fullheight slider-text">
+                            <div class="slider-text-inner">
+                                <div class="desc">
+                                    <?php if ($newProduct->getSale() > 0) { ?>
+                                        <span>
+                                        <span class="price"
+                                              style="color: red;
+                                              display: inline-block;
+                                              font-weight: bold;">$<?php echo $newProduct->getSalePrice(); ?></span>
+                                        <div class="price-before-sale"
+                                             style="display: inline-block">
+                                            - $<strike><?php echo $newProduct->getPrice(); ?></strike>
+                                        </div>
+                                        </span>
+                                    <?php } else { ?>
+                                        <span class="price">$<?php echo $newProduct->getPrice(); ?></span>
+                                    <?php }; ?>
+                                    <h2>
+                                        <a href="/product/view/<?php echo $newProduct->getId(); ?>"><?php echo $newProduct->getName() ?></a>
+                                    </h2>
+                                    <p><?php echo $newProduct->getIntro() ?></p>
+                                    <p><a class="btn btn-primary btn-outline btn-lg addToCart"
+                                          data-cart-add="<?php echo $newProduct->getId(); ?>"
+                                          data-cart-quantity="1"
+                                          data-cart-name="<?php echo $newProduct->getName(); ?>"
+                                          data-cart-img="<?php echo $this->basePath($newProduct->getImage()) ?>"
+                                          data-cart-price="<?php echo $newProduct->getSalePrice(); ?>">
+                                            Purchase Now
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
+        </ul>
+    </div>
+</aside>
+
+<div class="body-margin">
+    <div id="fh5co-product"
+         style="margin: 60px 0;">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                    <span>Infini Shop</span>
+                    <h2>New Products.</h2>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach ($newProducts as $newProduct) { ?>
+
+                    <div class="col-md-4 text-center animate-box">
+                        <div class="product">
+                            <div class="product-grid"
+                                 style="background-image:url(<?php echo $newProduct->getImage() ?>);">
+                                <?php if ($newProduct->getSale() > 0) { ?>
+                                    <span class="sale">Sale</span>
+                                <?php }; ?>
+                                <div class="inner">
+                                    <p>
+                                        <a class="icon addToCart"
+                                           data-cart-add="<?php echo $newProduct->getId(); ?>"
+                                           data-cart-quantity="1"
+                                           data-cart-name="<?php echo $newProduct->getName(); ?>"
+                                           data-cart-img="<?php echo $this->basePath($newProduct->getImage()) ?>"
+                                           data-cart-price="<?php echo $newProduct->getSalePrice(); ?>">
+                                            <i class="icon-shopping-cart"></i>
+                                        </a>
+                                        <a href="/product/view/<?php echo $newProduct->getId(); ?>" class="icon">
+                                            <i class="icon-eye"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <h3>
+                                    <a href="/product/view/<?php echo $newProduct->getId(); ?>"><?php echo $newProduct->getName() ?></a>
+                                </h3>
+                                <span class="price">$<?php echo $newProduct->getSalePrice() ?></span>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url(img/img_bg_5.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="display-t">
+                <div class="display-tc">
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+								<span class="icon">
+									<i class="icon-eye"></i>
+								</span>
+
+                            <span class="counter js-counter" data-from="0" data-to="22070" data-speed="5000"
+                                  data-refresh-interval="50">1</span>
+                            <span class="counter-label">Creativity Fuel</span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+								<span class="icon">
+									<i class="icon-shopping-cart"></i>
+								</span>
+
+                            <span class="counter js-counter" data-from="0" data-to="450" data-speed="5000"
+                                  data-refresh-interval="50">1</span>
+                            <span class="counter-label">Happy Clients</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+								<span class="icon">
+									<i class="icon-shop"></i>
+								</span>
+                            <span class="counter js-counter" data-from="0" data-to="700" data-speed="5000"
+                                  data-refresh-interval="50">1</span>
+                            <span class="counter-label">All Products</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 animate-box">
+                        <div class="feature-center">
+								<span class="icon">
+									<i class="icon-clock"></i>
+								</span>
+
+                            <span class="counter js-counter" data-from="0" data-to="5605" data-speed="5000"
+                                  data-refresh-interval="50">1</span>
+                            <span class="counter-label">Hours Spent</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

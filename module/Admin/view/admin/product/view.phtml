@@ -1,0 +1,63 @@
+<div class="box-body">
+    <h2 class="margin-bottom-20">
+        <?php echo 'Infomation of product '.$product->getName().' : '?></h2>
+
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>Name:</th>
+                    <td>
+                    <?= $this->escapeHtml($product->getName()) ?></td>
+                </tr>
+                <tr>
+                    <th>Category:</th>
+                    <td>
+                        <?php if($product->getCategory() != null)
+                            $this->escapeHtml($product->getCategory()->getName()) ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Store:</th>
+                    <td>
+                        <?php if($product->getStore() != null) 
+                            $this->escapeHtml($product->getStore()->getName()) ?>
+                        </td>
+                </tr>
+                <tr>
+                    <th>Price:</th>
+                    <td>
+                    <?= $this->escapeHtml($product->getPrice()) ?></td>
+                </tr>
+                <tr>
+                    <th>Quantity:</th>
+                    <td>
+                    <?= $this->escapeHtml($product->getQuantity()) ?></td>
+                </tr>
+                <tr>
+                    <th>Intro:</th>
+                    <td>
+                    <?= $this->escapeHtml($product->getIntro()) ?></td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td>
+                    <?= $this->escapeHtml($product->getDescription()) ?></td>
+                </tr>
+                <tr>
+                    <th>Date Created:</th>
+                    <td>
+                    <?= $this->escapeHtml($product->getDateCreated()) ?></td>
+                </tr>
+             </table>
+        </div>
+
+        <div class="col-md-1"></div>
+
+        <div class="col-md-5">
+            <h2> Image : </h2>
+            <img src="<?php echo $this->basePath($product->getImage()) ?>" class="width-custom">
+
+        </div>
+    </div>
+</div>

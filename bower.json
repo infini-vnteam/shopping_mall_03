@@ -1,0 +1,28 @@
+{
+  "name": "shopping_mall_03",
+  "homepage": "https://github.com/deviltruong/shopping_mall_03",
+  "authors": [
+    "deviltruong <truong21231995@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "components-font-awesome": "^4.7.0",
+    "animate.css": "^3.5.2",
+    "datatables": "^1.10.15",
+    "semantic": "semantic-ui#^2.2.13",
+    "AdminLTE": "admin-lte#^2.3.11",
+    "typeahead.js": "^0.11.1",
+    "handlebars": "^4.0.10"
+  }
+}

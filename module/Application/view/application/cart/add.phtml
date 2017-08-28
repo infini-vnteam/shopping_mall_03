@@ -1,0 +1,85 @@
+<?php
+$this->headTitle('Shipping information');
+
+$form->get('full_name')->setAttributes([
+    'class' => 'form-control',
+]);
+
+$form->get('address')->setAttributes([
+    'class' => 'form-control',
+]);
+
+$form->get('phone')->setAttributes([
+    'class' => 'form-control',
+]);
+
+$form->get('submit')
+    ->setAttributes(['class' => 'btn btn-primary btn-lg']);
+
+$form->prepare();
+?>
+
+<div class="row body-margin">
+    <div class="col-sm-8">
+        <div class="shipping-info">
+            <h2>Shipping information</h2>
+            <div class="divider"></div>
+            <?= $this->form()->openTag($form); ?>
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('full_name')); ?>
+                <?= $this->formElement($form->get('full_name')); ?>
+                <?= $this->formElementErrors($form->get('full_name')); ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('address')); ?>
+                <?= $this->formElement($form->get('address')); ?>
+                <?= $this->formElementErrors($form->get('address')); ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('phone')); ?>
+                <?= $this->formElement($form->get('phone')); ?>
+                <?= $this->formElementErrors($form->get('phone')); ?>
+            </div>
+
+            <?= $this->formElement($form->get('submit')); ?>
+
+            <?= $this->form()->closeTag(); ?>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="order-info">
+            <h2>Order summary</h2>
+            <div class="divider"></div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>PRODUCT</th>
+                    <th>QTY</th>
+                    <th>PRICE</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($data->items as $item): ?>
+                    <tr>
+                        <td><?php echo $item->name ?></td>
+                        <td><?php echo $item->quantity ?></td>
+                        <td><?php echo $item->quantity * $item->price ?></td>
+                    </tr>
+                <?php endforeach;?>
+                </tbody>
+            </table>
+            <div class="divider"></div>
+            <div class="row">
+                <div class="col-sm-4 text-left">
+                    <h2>Total</h2>
+                </div>
+                <div class="col-sm-8 text-right">
+                    <h2 style="color: orange"><?php echo $data->totalPrice ?> USD</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<?php 
+	$search_form->setAttribute("action", $this->url('search'));
+?>
+
+<div class="col-lg-6 search-bar">
+    <?= $this->form()->openTag($search_form); ?>
+    <div class="input-group">
+        <?= $this->formElement($search_form->get('query')); ?>
+        <span class="input-group-btn">
+            <button class="btn btn-search" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>   
+        </span>
+    </div>    
+    <?= $this->form()->closeTag($search_form); ?>
+</div>

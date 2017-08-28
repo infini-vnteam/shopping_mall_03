@@ -1,0 +1,28 @@
+<div class="top-bar">
+    <div class="top-bar-content">
+        <div class="top-bar-left">
+            <i class="icon icon-phone"> </i> OUR PHONE NUMBER:
+            <span style="margin-left:10px; border-bottom: 1px solid rgba(255,255,255,0.3);">
+                +84 (24) 969 696
+            </span>
+        </div>
+        <div class="top-bar-right">
+            <div class="top-bar-menu">
+                <ul id="menu-top-bar" class="menu">
+                    <?php if ($this->user != null && $this->user["id"] == 1) { ?>
+                        <li class="menu-item"><a href="/admin">Admin mode</li>
+                    <?php } ?>
+                    <li class="menu-item"><a href="#">Track my order</li>
+                    <li class="menu-item"><a href="#">Contact us</a></li>
+                    <?php if ($this->user == null) { ?>
+                        <li class="menu-item"><a href="/login">Signin</li>
+                        <li class="menu-item high-light" id="register-link"><a href="/register">Register</a></li>
+                    <?php } else { ?>
+                        <li class="menu-item"><a href="#">Your order</li>
+                        <li class="menu-item" id="register-link"><a href="/logout">Logout</a></li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

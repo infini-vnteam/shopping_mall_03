@@ -1,0 +1,100 @@
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Add new Product</h3>
+            </div>
+            <div class="box-body">
+                <?= $this->form()->openTag($form); ?>
+                <!-- left row -->
+                <div class="col-md-5 col-xs-12 col-sm-5 ">
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('name')); ?>
+                        <?= $this->formElement($form->get('name')); ?>
+                        <?= $this->formElementErrors($form->get('name')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('category_id')); ?>
+                        <?= $this->formElement($form->get('category_id')); ?>
+                        <?= $this->formElementErrors($form->get('category_id')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('store_id')); ?>
+                        <?= $this->formElement($form->get('store_id')); ?>
+                        <?= $this->formElementErrors($form->get('store_id')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('price')); ?>
+                        <?= $this->formElement($form->get('price')); ?>
+                        <?= $this->formElementErrors($form->get('price')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('color')); ?>
+                        <?= $this->formElement($form->get('color')); ?>
+                        <?= $this->formElementErrors($form->get('color')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('quantity')); ?>
+                        <?= $this->formElement($form->get('quantity')); ?>
+                        <?= $this->formElementErrors($form->get('quantity')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('size')); ?>
+                        <?= $this->formElement($form->get('size')); ?>
+                        <?= $this->formElementErrors($form->get('size')); ?>                  
+                    </div>
+                </div>
+                <!-- end left row -->
+                <div class="col-md-1"></div>
+
+                <!-- right row -->
+                <div class="col-md-5 col-xs-12 col-sm-5 ">
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('image')); ?>
+                        <?= $this->formFile($form->get('image')); ?>
+                        <?= $this->formElementErrors($form->get('image')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <div class="upload-preview">
+                            <img class="width-custom">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('intro')); ?>
+                        <?= $this->formElement($form->get('intro')); ?>
+                        <?= $this->formElementErrors($form->get('intro')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('description')); ?>
+                        <?= $this->formElement($form->get('description')); ?>
+                        <?= $this->formElementErrors($form->get('description')); ?>                  
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('keywords')); ?>
+                        <?= $this->formElement($form->get('keywords')); ?>
+                        <?= $this->formElementErrors($form->get('keywords')); ?>                  
+                        <p class="help-block">Separate tags with comma.</p>
+                    </div>
+
+                    <div class="form-group">
+                        <?= $this->formElement($form->get('submit')); ?>
+                    </div>
+                </div>
+                <!-- end right row -->
+
+                <?= $this->form()->closeTag(); ?>   
+            </div>    
+        </div>
+    </div>
+</div>

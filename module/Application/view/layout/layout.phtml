@@ -1,0 +1,77 @@
+<?= $this->doctype() ?>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle('Shopping Mall')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        ->prependStylesheet($this->basePath('css/app/animate.css'))
+        ->prependStylesheet($this->basePath('css/app/icomoon.css'))
+        ->prependStylesheet($this->basePath('css/app/font-awesome.css'))
+        ->prependStylesheet($this->basePath('css/app/flexslider.css'))
+        ->prependStylesheet($this->basePath('css/app/owl.carousel.min.css'))
+        ->prependStylesheet($this->basePath('css/app/owl.theme.default.min.css'))
+        ->prependStylesheet($this->basePath('css/app/main.css'))
+        ->prependStylesheet($this->basePath('css/app/style.css'))
+        ->prependStylesheet($this->basePath('assets/bootstrap/dist/css/bootstrap.min.css'))
+    ?>
+
+    <!-- Scripts -->
+    <?= $this->headScript()
+        ->prependFile($this->basePath('js/me.js'))
+        ->prependFile($this->basePath('js/app/main.js'))
+        ->prependFile($this->basePath('js/app/autocomplete.js'))
+        ->prependFile($this->basePath('assets/typeahead.js/dist/typeahead.bundle.min.js'))
+        ->prependFile($this->basePath('assets/handlebars/handlebars.min.js'))
+        ->prependFile($this->basePath('js/app/modernizr-2.6.2.min.js'))
+        ->prependFile($this->basePath('js/app/respond.min.js'))
+        ->prependFile($this->basePath('js/app/jquery.easing.1.3.js'))
+        ->prependFile($this->basePath('js/app/jquery.waypoints.min.js'))
+        ->prependFile($this->basePath('js/app/owl.carousel.min.js'))
+        ->prependFile($this->basePath('js/app/jquery.countTo.js'))
+        ->prependFile($this->basePath('js/app/jquery.flexslider-min.js'))
+        ->prependFile($this->basePath('assets/bootstrap/dist/js/bootstrap.min.js'))
+        ->prependFile($this->basePath('js/app/jquery.min.js'))
+    //        ->prependFile($this->basePath('assets/jquery/dist/jquery.min.js'))
+    ?>
+</head>
+
+<body>
+<div class="fh5co-loader"></div>
+
+<div id="page">
+    <header>
+        <?php include_once 'elements/header.phtml' ?>
+        <?php include_once 'elements/navbar.phtml' ?>
+        <?php include_once 'elements/category.phtml' ?>
+    </header>
+
+    <div id="body-contents">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div id="flash-message">
+                </div>
+            </div>
+        </div>
+        <?= $this->content ?>
+    </div>
+
+    <footer>
+        <?php include_once 'elements/footer.phtml' ?>
+    </footer>
+
+    <?= $this->inlineScript() ?>
+
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?php 
+    $form = $this->form; 
+    $form->get('submit')->setAttributes([
+    'value' => 'Edit',  
+    ]);
+?>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Add new Store</h3>
+            </div>
+            <?= $this->form()->openTag($form); ?>
+                <div class="box-body">
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('name')); ?>
+                        <?= $this->formElement($form->get('name')); ?>
+                        <?= $this->formElementErrors($form->get('name')); ?>                  
+                    </div>
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('address')); ?>
+                        <?= $this->formElement($form->get('address')); ?>
+                        <?= $this->formElementErrors($form->get('address')); ?>                  
+                    </div>
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('phone')); ?>
+                        <?= $this->formElement($form->get('phone')); ?>
+                        <?= $this->formElementErrors($form->get('phone')); ?>                  
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <?= $this->formElement($form->get('submit')); ?>
+                </div>
+            <?= $this->form()->closeTag(); ?>   
+        </div>
+    </div>
+</div>

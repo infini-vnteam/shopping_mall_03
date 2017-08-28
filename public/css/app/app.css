@@ -1,0 +1,51 @@
+span a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+span a {
+    color: white;
+}
+
+/*.nav_logo .text_logo {*/
+    /*color: white;*/
+    /*font-size: 30px;*/
+    /*font-weight:bold;*/
+/*}*/
+
+.nav_logo a {
+    color: #dc006c;
+}
+.nav_logo small {
+    color: #333;
+}
+.nav_logo .logo {
+    font: 36px 'Arial Narrow', sans-serif;/* I picked this font because it's the closest looking 'web safe' font http://cssfontstack.com/ */
+    color: #fefefe;
+    /*text-transform: uppercase;*/
+    letter-spacing: -2px;
+    margin: 0 auto;
+    margin-left: -5px;
+}
+
+/* stuff for both words */
+.nav_logo .logo span {
+    position: relative;
+}
+
+/* stuff for 1st word */
+.nav_logo .logo .word1 {
+    font-weight: bold;
+    /*color: #dc006c;*/
+    margin-right: -2px;
+    /*transform: rotateY(180deg);!* using Prefix free *!*/
+    display: inline-block;/* required for transform */
+    z-index: 10;/* stack 1st word on top */
+}
+
+/* stuff for 2nd word */
+.nav_logo .logo .word2 {
+    text-transform: uppercase;
+    font-size: 30px;
+    z-index: 0;/* stack 2nd word below */
+}

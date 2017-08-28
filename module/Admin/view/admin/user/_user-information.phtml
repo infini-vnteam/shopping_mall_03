@@ -1,0 +1,59 @@
+<!-- User Profile -->
+<div class="box box-primary">
+	<div class="box-body box-profile">
+		<img class="profile-user-img img-responsive img-circle"
+		    src="/img/avatar5.png">
+		<h3 class="profile-username text-center">
+			<?php echo $user->getName(); ?>
+		</h3>
+		<p class="text-muted text-center">
+			<?php echo $user->getEmail(); ?>
+		</p>
+		<ul class="list-group list-group-unbordered">
+			<li class="list-group-item">
+				<b>Orders</b>
+				<span class="pull-right-container">
+					<a class="label pull-right bg-blue"><?php echo count($orders); ?></a>
+					<?php if($pending_order_exist) { ?>
+						<small class="label pull-right bg-red margin-r-5">
+							<?php echo $new_orders." new";?>
+						</small>
+					<?php } ?>	
+				</span>
+			</li>
+			<li class="list-group-item">
+				<b>Total Pays:</b>
+				<small class="label bg-blue pull-right"><?php echo $total_pays; ?>$</small>
+			</li>
+			<li class="list-group-item">
+				<b>Purchased Items:</b>
+				<small class="label bg-blue pull-right"><?php echo $total_purchased; ?></small>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- User' Information -->
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">Information</h3>
+	</div>
+	<div class="box-body">
+		<strong>
+			<i class="fa fa-map-marker margin-r-5"></i>
+			Address
+		</strong>
+		<p class="text-muted">
+			<?php echo $user->getAddress(); ?>
+		</p>
+		<hr>
+		<strong>
+			<i class="fa fa-phone margin-r-5"></i>
+			Phone
+		</strong>
+		<p class="text-muted">
+			<?php echo $user->getPhone(); ?>
+		</p>
+		<hr>
+	</div>
+</div>

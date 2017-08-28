@@ -1,0 +1,51 @@
+<?= $this->doctype() ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?= $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+            // ->prependStylesheet($this->basePath('css/style.css'))
+            ->prependStylesheet($this->basePath('css/admin.css'))
+            ->prependStylesheet($this->basePath('assets/AdminLTE/dist/css/skins/skin-blue.min.css'))
+            ->prependStylesheet($this->basePath('assets/AdminLTE/dist/css/AdminLTE.min.css'))
+            ->prependStylesheet($this->basePath('assets/components-font-awesome/css/font-awesome.min.css'))
+            ->prependStylesheet($this->basePath('assets/bootstrap/dist/css/bootstrap-theme.min.css'))
+            ->prependStylesheet($this->basePath('assets/bootstrap/dist/css/bootstrap.min.css'))
+            ->prependStylesheet($this->basePath('assets/datatables/media/css/dataTables.semanticui.min.css'))
+            ->prependStylesheet($this->basePath('assets/semantic/dist/semantic.min.css'))
+        ?>
+
+        <!-- Scripts -->
+        <?= $this->headScript()
+            ->prependFile($this->basePath('js/me.js'))
+            ->prependFile($this->basePath('assets/semantic/dist/semantic.min.js'))
+            ->prependFile($this->basePath('assets/AdminLTE/dist/js/demo.js'))   
+            ->prependFile($this->basePath('assets/AdminLTE/dist/js/app.min.js'))
+            ->prependFile($this->basePath('assets/datatables/media/js/dataTables.semanticui.min.js'))
+            ->prependFile($this->basePath('assets/datatables/media/js/jquery.dataTables.min.js'))
+            ->prependFile($this->basePath('assets/bootstrap/dist/js/bootstrap.min.js'))                  
+            ->prependFile($this->basePath('assets/jquery/dist/jquery.min.js'))   
+        ?>
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <?php include_once 'html/nav.php';?>
+            <?php include_once 'html/sidebar.php';?>
+            <div class="content-wrapper">
+                <section class="content">
+                    <?= $this->content ?>   
+                </section>
+            </div>
+
+            <?= $this->inlineScript() ?>
+        </div>
+    </body>
+</html>

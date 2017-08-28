@@ -1,0 +1,71 @@
+<div class="category-bar js-category-bar">
+    <div class="category-bar-content row">
+        <div class="category-bar-left col-sm-7 text-left">
+            <div class="category-bar-menu">
+                <button class="btn btn-cancel bt-infinitive menu-category" id="menu-home" onclick="location.href = '/';">
+                    Home
+                </button>
+                <ul class="menu-category-bar">
+                    <?php foreach ($mainCategories as $mainCategory) : ?>
+                        <li class="menu-item has-dropdown">
+                            <button class="btn btn-cancel bt-infinitive menu-category"
+                                    onclick="location.href = '/category/view/' +
+                                    <?php echo $mainCategory->getId(); ?>;">
+                                <?php echo $mainCategory->getName(); ?>
+                            </button>
+                            <ul class="dropdown">
+
+                            <?php foreach ($arrCateTree[$mainCategory->getId()] as $cate) : ?>
+                                <li><a href='<?php echo '/category/view/'.$cate->getId();?>'><?php echo $cate->getName(); ?></a></li>
+                            <?php endforeach ?>
+                            </ul>
+                        </li>
+
+                    <?php endforeach ?>
+                    <li class="menu-item">
+                        <button class="btn btn-cancel bt-infinitive" onclick="location.href = '#';">
+                            Sale
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="category-bar-right col-sm-5 text-right">
+            <ul class="row">
+                <?php if ($this->user == null) { ?>
+                    <li class="menu-item col-md-8 text-right signin-register">
+                        <a href="/register">
+                            <div class="menu-item label-category-bar">
+                                Hello, Guest!
+                                <i class="fa fa-angle-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                <?php } else { ?>
+                    <li class="menu-item col-sm-8 text-right signin-register">
+                        <a href="/user/view">
+                            <div class="menu-item label-category-bar">
+                                Hello, <?php echo $this->user['name'] ?>
+                                <i class="fa fa-angle-right"></i>
+                            </div>
+                        </a>
+                    </li>
+                <?php } ?>
+                <li class="menu-item col-sm-4 text-right cart-info">
+                    <a href="/cart">
+                        <ul>
+                            <li class="menu-item cart-icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </li>
+                            <li class="menu-item" id="number_cart_item">
+                            </li>
+                            <li class="menu-item label-category-bar">
+                                Cart
+                            </li>
+                        </ul>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

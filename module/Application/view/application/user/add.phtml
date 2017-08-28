@@ -1,0 +1,99 @@
+<?php
+$this->headTitle('Register');
+
+// $this->mainMenu()->setActiveItemId('users');
+//
+//$this->pageBreadcrumbs()->setItems([
+//    'Home' => $this->url('home'),
+//    'Manage Users' => $this->url('users'),
+//    'Add User' => $this->url('users', ['action' => 'add'])
+//]);
+
+$form->get('email')->setAttributes([
+    'class' => 'form-control'
+]);
+
+$form->get('full_name')->setAttributes([
+    'class' => 'form-control'
+]);
+
+$form->get('address')->setAttributes([
+    'class' => 'form-control'
+]);
+
+$form->get('phone')->setAttributes([
+    'class' => 'form-control'
+]);
+
+//$form->get('status')->setAttributes([
+//    'class' => 'form-control'
+//]);
+
+$form->get('password')->setAttributes([
+    'class' => 'form-control',
+    'placeholder' => 'At least 6 characters'
+]);
+
+$form->get('confirm_password')->setAttributes([
+    'class' => 'form-control'
+]);
+
+$form->get('submit')->setAttributes(['class' => 'btn btn-primary']);
+
+$form->prepare();
+?>
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 register">
+
+        <div class="register-form">
+            <h2>Create account</h2>
+
+            <?= $this->form()->openTag($form); ?>
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('email')); ?>
+                <?= $this->formElement($form->get('email')); ?>
+                <?= $this->formElementErrors($form->get('email')); ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('full_name')); ?>
+                <?= $this->formElement($form->get('full_name')); ?>
+                <?= $this->formElementErrors($form->get('full_name')); ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('password')); ?>
+                <?= $this->formElement($form->get('password')); ?>
+                <?= $this->formElementErrors($form->get('password')); ?>
+            </div>
+
+            <div class="form-group">
+                <?= $this->formLabel($form->get('confirm_password')); ?>
+                <?= $this->formElement($form->get('confirm_password')); ?>
+                <?= $this->formElementErrors($form->get('confirm_password')); ?>
+            </div>
+
+<!--            <div class="form-group">-->
+                <?php $this->formLabel($form->get('address')); ?>
+                <?php $this->formElement($form->get('address')); ?>
+                <?php $this->formElementErrors($form->get('address')); ?>
+<!--            </div>-->
+
+<!--            <div class="form-group">-->
+                <?php $this->formLabel($form->get('phone')); ?>
+                <?php $this->formElement($form->get('phone')); ?>
+                <?php $this->formElementErrors($form->get('phone')); ?>
+<!--            </div>-->
+
+
+            <?= $this->formElement($form->get('submit')); ?>
+
+            <?= $this->form()->closeTag(); ?>
+
+            <p>Already have an account?
+                <a href="/login">Sign in <i class="fa fa-angle-right"></i> </a></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="fh5co-tab-content tab-content" data-tab-content="2">
+    <div class="col-md-10 col-md-offset-1">
+        <h3>Comment</h3>
+        <div class="feed" id="comment-field">
+            <?php foreach ($comments as $comment) { ?>
+                <div id = "comment-<?php echo $comment->getID() ?>" >
+                    <blockquote>
+                        <?php if($comment->getUser()->getId() == $user_id ) { ?>
+                        <span class="right-conner">
+                            <button class="glyphicon glyphicon-remove remove-comment"
+                                data-id="<?php echo $comment->getID() ?>">
+                            </button>
+                        </span>
+                        <?php } ?>
+                        <p><?php echo $comment->getContent() ?></p>
+                    </blockquote>
+                    <h3>&mdash; <?php echo $comment->getUser()->getName() ?></h3>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="comment-form">
+            <?php if ($user_id != null) { ?>
+                <?= $this->form()->openTag($comment_form); ?>
+                <input class="hidden" id="product-id" value="<?php echo $product->getID() ?>">
+                <div class="form-group">
+                    <?= $this->formElement($comment_form->get('comment')); ?>
+                </div>
+                <?= $this->form()->closeTag($comment_form); ?>
+                <div class="form-group">
+                    <button class="btn btn-primary" id="submitbutton">Save</button>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>

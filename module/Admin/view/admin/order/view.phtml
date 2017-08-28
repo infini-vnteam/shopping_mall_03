@@ -1,0 +1,117 @@
+<?php
+    function status_class($id) {
+        if($id == 1) return "bg-red";
+        if($id == 2) return "bg-blue";
+        if($id == 3) return "bg-yellow";
+    }
+
+    function status_content($id) {
+        if($id == 1) return "pending";
+        if($id == 2) return "shipping";
+        if($id == 3) return "completed";
+    }
+?>
+<h1 class="text-center">Order View</h1>
+<br>
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">User's Informations</h3>
+            </div>
+            <div class="box-body no-padding">
+                <table class="table table-striped table-bordered">
+                    <tr>
+                        <th>Name:</th>
+                        <td>
+                            <?php 
+                                if($order->getUser() == null)
+                                    echo $order->getName();
+                                else
+                                    echo "<a href=\"{$this->url('users', ['action' => 'view', 'id' => $order->
+                                        getUser()->getId()])}\">".$order->getName()."</a>";
+                            ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Phone:</th>
+                        <td>
+                        <?= $this->escapeHtml($order->getPhone()) ?></td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td>
+                        <?= $this->escapeHtml($order->getAddress()) ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-8">
+        <div class="box">
+            <div class="box-header">
+                <h3>Order's Informations</h3>
+            </div>
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 15px">#</th>
+                            <th>Product's Name</th>
+                            <th>Product's Image</th>
+                            <th>Quantity</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php foreach($order_items as $order_item): ?>
+                        <tr>
+                            <td><?php echo ++$i ?></td>
+                            <?php 
+                                echo "<td><a href=\"{$this->url('products', ['action' => 'view', 'id' => $order_item->getProduct()->getId()])}\">".$order_item->getProduct()->getName()."</a></td>";
+                            ?>
+                            <td>
+                                <img src="<?php echo $this->basePath($order_item->
+                                    getProduct()->getImage()) ?>" class="image_product">
+                            </td>
+                            <td><?php echo $order_item->getQuantity(); ?></td>
+                            <td><?php echo $order_item->getCost(); ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                        <tr>
+                            <td colspan="4">Tong tien</td>    
+                            <td><?php echo $order->getCost(); ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Status</td>    
+                            <td>
+                                <small class="label <?php echo status_class($order->getStatus())?>">
+                                    <?php echo status_content($order->getStatus()); ?>
+                                </small>
+                            </td>
+                        </tr>
+                        <?php if($order->getStatus() != 3 ) { ?>
+                            <tr>
+                                <td colspan="4">Action</td>    
+                                <td>
+                                    <a href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>">
+                                        <i class="fa fa-truck"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
