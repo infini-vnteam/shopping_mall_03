@@ -1,16 +1,11 @@
 $(function () {
-    // let socket = io.connect('http://shopping.app:8056/');
+    // let socket = io.connect('http://localhost:8056/');
     //
     // function emitMessage(message) {
     //     console.log(socket);
     //     console.log(message);
     //     socket.emit('new message', message);
     // }
-    //
-    // socket.on('new message', msg => {
-    //     app.messages.push(msg);
-    //     console.log(msg);
-    // });
     //
     // socket.on('new message', msg => {
     //     app.messages.push(msg);
@@ -40,7 +35,11 @@ $(function () {
                 axios.get('/loadNotification')
                     .then(res => {
                         this.num_unread = res.data.unread_count;
-                        this.raw_notice = Object.values(res.data);
+                        delete res.data.unread_count;
+                        this.raw_notice = Object.values(res.data).filter(ele => {
+                            return ele !== '';
+
+                        });
                         this.showNotice();
                     })
                     .catch(err => {
@@ -54,7 +53,18 @@ $(function () {
             seeMoreNotice: function () {
                 this.page++;
                 this.showNotice();
-            }
+            },
+            setNoticeToRead: function () {
+                axios.post('/loadNotification', {
+                    msg: 'use see notice',
+                })
+                    .then(res => {
+                        this.num_unread = 0;
+                    })
+                    .catch(err => {
+
+                    });
+            },
         },
     });
 });

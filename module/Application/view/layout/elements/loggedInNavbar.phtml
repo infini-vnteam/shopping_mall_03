@@ -10,7 +10,11 @@
     </li>
     <li class="cart_li text-center">
         <div id="notification">
-            <md-menu md-size="7" md-direction="bottom left" :md-offset-x="0" md-offset-y="70">
+            <md-menu md-size="7"
+                     md-direction="bottom left"
+                     :md-offset-x="0"
+                     md-offset-y="70"
+                     @open="setNoticeToRead">
                 <md-button class="md-icon-button"
                            md-menu-trigger>
                     <md-icon class="md-size-1x"

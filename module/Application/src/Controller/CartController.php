@@ -47,15 +47,15 @@ class CartController extends AbstractActionController
             //     'full_name' => 'truong',
             //     'phone_number' => '0999999999',
             //     'email' => 'truong@gmail.com',
-            //     'address' => 'haaaaaaa', 
+            //     'address' => 'haaaaaaa',
             //     'district' => 'Quan 1',
             //     'province' => 'Ho Chi Minh City',
             //     'total_price' => '10000',
             //     'user_id' => 3,
             // ];
-            
+
         //view
-       
+
         $cookie = $this->getRequest()->getCookie('Cart', 'default');
         $cart_info = json_decode($cookie["Cart"]);
 
@@ -69,7 +69,6 @@ class CartController extends AbstractActionController
     public function checkoutAction()
     {
         if ($this->getRequest()->isPost()) {
-
             // Fill in the form with POST data
             $data = $this->getRequest()->getContent();
 
@@ -87,19 +86,20 @@ class CartController extends AbstractActionController
                 'total_price' => $totalPrice,
             ];
 
-//            $this->response->setContent(json_encode($data_formated));
-//            return $this->response;
 
             $cookie = $this->getRequest()->getCookie('Cart', 'default');
             $cart_info = json_decode($cookie["Cart"]);
-            
+
             $sessionContainer = new Container('UserLogin');
             if (isset($sessionContainer->id)) {
                 $data_formated['user_id'] = $sessionContainer->id;
             }
+
             $order = $this->orderManager->addNewOrder($data_formated, $cart_info);
             $hash = $this->orderManager->encryptByOrderId($order->getId());
-            $this->mailManager->sendOrder($hash);
+
+
+//            $this->mailManager->sendOrder($hash);
 
             $cookie = new \Zend\Http\Header\SetCookie(
                 'Cart',
@@ -114,6 +114,7 @@ class CartController extends AbstractActionController
                 'status' => 'ok',
                 'order_id' => $hash,
             ];
+
 
             $this->response->setContent(json_encode($res));
             return $this->response;

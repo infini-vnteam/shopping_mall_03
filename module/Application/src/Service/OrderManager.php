@@ -139,7 +139,9 @@ class OrderManager
     public function getOrder($order_id, $email) 
     {
         $order_id = self::decryptByOrderId($order_id);
+        if (!is_numeric($order_id)) return null;
         $order = $this->entityManager->getRepository(Order::class)->find($order_id);
+        if ($order == null) return null;
         if ($email != $order->getEmail()) return null;
         return $order;
     }

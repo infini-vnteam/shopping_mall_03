@@ -29,7 +29,7 @@ class User
     /**
      * @ORM\OneToMany(targetEntity="\Application\Entity\Activity", mappedBy="receiver")
      * @ORM\JoinColumn(name="id", referencedColumnName="receiver_id")
-     * @ORM\OrderBy({"date_created"="DESC"})
+     * @ORM\OrderBy({"date_created" = "DESC"})
      */
     protected $notifications;
 

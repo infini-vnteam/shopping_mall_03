@@ -138,6 +138,8 @@ class IndexController extends AbstractActionController
 
     public function initElasticSearchAction()
     {
+        $result = $this->elasticSearchManager->deleteIndex('infinishop');
+
         $result = $this->elasticSearchManager->createIndex('infinishop');
 
         $products = $this->entityManager->getRepository(Product::class)->findAll();

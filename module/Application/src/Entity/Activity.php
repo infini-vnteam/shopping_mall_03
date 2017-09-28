@@ -250,27 +250,36 @@ class Activity
 
     public function getNotiContent()
     {
-        $content = [];
-        
-        switch ($this->type) {
-            case $this::COMMENT:
-                $format = '%s commented in product <a href="/product/view/%d">%s</a>';
-                $content = sprintf($format, $this->getSender()->getName(),
-                    $this->getTarget()->getProduct()->getId(), $this->getTarget()->getProduct()->getName());
-                break;
-            case $this::ORDER_SHIP:
-                $format = 'Your order #%d has been shipped - check <a href="/order">here</a>';
-                $content = sprintf($format, $this->getTargetID());
-                break;
-            case $this::ORDER_COMPLETE:
-                $format = 'Your order #%d has been shipped successfully - check <a href="/order">here</a>';
-                $content = sprintf($format, $this->getTargetID());
-                break;
-            case $this::REPLY:
-                $format = '%s commented on your comment in product <a href="/product/view/%d">%s</a>';
-                $content = sprintf($format, $this->getSender()->getName(),
-                    $this->getTarget()->getProduct()->getId(), $this->getTarget()->getProduct()->getName());
-                break;
+        if ($this->getTarget() == null) {
+            return '';
+        }
+
+        $content = '';
+
+        if($this->type == 2)
+        {
+            $format = '%s commented in product <a href="/product/view/%d">%s</a>';
+            $content = sprintf($format, $this->getSender()->getName(),
+                $this->getTarget()->getProduct()->getId(), $this->getTarget()->getProduct()->getName());
+        }
+
+        if ($this->type == 4)
+        {
+            $format = 'Your order #%d has been shipped - check <a href="/order">here</a>';
+            $content = sprintf($format, $this->getTargetID());
+        }
+
+        if ($this->type == 5)
+        {
+            $format = 'Your order #%d has been shipped successfully - check <a href="/order">here</a>';
+            $content = sprintf($format, $this->getTargetID());
+        }
+
+        if($this->type == 6)
+        {
+            $format = '%s commented on your comment in product <a href="/product/view/%d">%s</a>';
+            $content = sprintf($format, $this->getSender()->getName(),
+                $this->getTarget()->getProduct()->getId(), $this->getTarget()->getProduct()->getName());
         }
 
         return $content;

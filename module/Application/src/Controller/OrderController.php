@@ -50,7 +50,7 @@ class OrderController extends AbstractActionController
                 }
 
                 $order = [
-                    'id' => $order->getId(),
+                    'id' => $this->orderManager->encryptByOrderId($order->getId()),
                     'created_at' => $order->getDateCreated(),
                     'completed_at' => $order->getCompletedAt(),
                     'items' => $items_data,
@@ -118,7 +118,7 @@ class OrderController extends AbstractActionController
                     }
 
                     $order = [
-                        'id' => $order->getId(),
+                        'id' => $this->orderManager->encryptByOrderId($order->getId()),
                         'created_at' => $order->getDateCreated(),
                         'completed_at' => $order->getCompletedAt(),
                         'items' => $items_data,

@@ -69,6 +69,8 @@ $(function () {
                         if (res.data.status === 'ok') {
                             this.success = true;
                             this.order_id = res.data.order_id;
+                        } else {
+                            console.log(res.data);
                         }
                     })
                     .catch(error => {

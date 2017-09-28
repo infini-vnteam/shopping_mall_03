@@ -14,6 +14,20 @@
 
 }
 
+/*home*/
+.container-fluid {
+    /*padding: 0;*/
+    margin-top: 0;
+}
+
+.new-home {
+    padding-bottom: 30px;
+}
+
+.color-background {
+    margin: 0 -15px;
+}
+
 .danger {
     color: #a94442;
     background-color: #f2dede;
@@ -795,6 +809,10 @@
 }
 
 /*notification*/
+.notification-panel {
+    max-height: 70vh !important;
+}
+
 .notification-panel .md-list {
     padding: 0 !important;
 }
