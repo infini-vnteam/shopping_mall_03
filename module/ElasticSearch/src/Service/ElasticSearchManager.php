@@ -30,6 +30,18 @@ class ElasticSearchManager
         return $response;
     }
 
+    public function deleteIndex($index)
+    {
+        $params = [
+            'index' => $index,
+            'client' => ['ignore' => [400, 404]],
+        ];
+
+        $response = $this->getClient()->indices()->delete($params);
+
+        return $response;
+    }
+
     public function index($index, $type, $id, $data)
     {
         $params = [

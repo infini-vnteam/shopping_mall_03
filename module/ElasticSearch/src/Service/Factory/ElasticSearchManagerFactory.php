@@ -10,10 +10,6 @@ use Zend\ServiceManager\Exception\ServiceNotFoundException;
 use Zend\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 use Elasticsearch;
-
-define('PATH_APPLICATION_1', realpath(dirname(null)));
-define('PATH_CONFIG_1', PATH_APPLICATION . '/config');
-
 class ElasticSearchManagerFactory implements FactoryInterface
 {
 

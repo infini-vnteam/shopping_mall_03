@@ -54,7 +54,7 @@
 
                                                     <?php foreach($sub->getChildrens() as $children) : ?>
                                                     <li>
-                                                        <a href="/category/view/<?php echo $children->getId(); ?>"><b>Placeholder <?php echo $children->getName(); ?></b></a>
+                                                        <a href="/category/view/<?php echo $children->getId(); ?>"><b><?php echo $children->getName(); ?></b></a>
                                                     </li>
                                                     <?php endforeach; ?>
                                                     
@@ -69,7 +69,7 @@
                 </ul>
             </li>
         <?php endforeach; ?>
-        <li class="sign_li"><a href="/sale" class="signin">Sale</a></li>
+        <li class="sign_li"><a href="/sale" class="signin">Sale Programs</a></li>
     </ul>
 </div>
 <!-- /.navbar-collapse -->

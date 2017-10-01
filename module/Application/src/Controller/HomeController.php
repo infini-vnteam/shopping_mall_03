@@ -278,22 +278,31 @@ class HomeController extends AbstractActionController
 
     public function loadNotificationAction()
     {
-        if (isset($this->sessionContainer->id)) {
-            $user_id = $this->sessionContainer->id;
-            $user = $this->entityManager->getRepository(User::class)->find($user_id);
-            $unread_notifications = $user->getUnreadNotifications();
-            $data['unread_count'] = count($unread_notifications);
-            foreach ($unread_notifications as $un) {
-                array_push($data, $un->getNotiContent());
+        if ($this->getRequest()->isPost()) {
+            // set notice to read
+            $this->response->setContent(json_encode([
+                'status' => 'ok',
+            ]));
+            return $this->response;
+
+        } else {
+            if (isset($this->sessionContainer->id)) {
+                $user_id = $this->sessionContainer->id;
+                $user = $this->entityManager->getRepository(User::class)->find($user_id);
+                $unread_notifications = $user->getUnreadNotifications();
+                $data['unread_count'] = count($unread_notifications);
+                foreach ($unread_notifications as $un) {
+                    array_push($data, $un->getNotiContent());
+                }
+
+                $this->response->setContent(json_encode($data));
+            } else {
+                $this->response->setContent(json_encode([
+                    'error' => 'You must login',
+                ]));
             }
 
-            $this->response->setContent(json_encode($data));
-        } else {
-            $this->response->setContent(json_encode([
-                'error' => 'You need login',
-            ]));
+            return $this->response;
         }
-
-        return $this->response;
     }
 }
