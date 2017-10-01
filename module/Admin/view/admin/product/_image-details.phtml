@@ -1,0 +1,107 @@
+<div class="box">
+    <div class="box-header">
+        <div class="row">
+            <div class="col-md-4">
+                <h2><?php echo $list_color[$color_id] ?></h2>
+            </div>
+            <div class="col-md-2">
+                <button class="set-size color-<?php echo $list_color[$color_id] ?>" ></button>
+            </div>
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+                <form method="POST" action="<?= $this->url('products',
+                    ['action' => 'removecolor', 'id' => $product->getId()]) ?>">
+                    <input type="hidden" name="color_id" value="<?php echo $color_id ?>">
+                    <button class="btn-icon" type="submit" title="remove this color">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="box-body">
+        <div class="container">  
+            <!-- thumb navigation carousel -->
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>
+                        Available Sizes: 
+                        <?php foreach ($s_a_i['size'] as $s ) {
+                            echo $list_size[$s];
+                            echo " ";
+                        }?>
+                    </strong>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4 book-image hidden-sm hidden-xs" id="slider-thumbs">
+                    
+                        <!-- thumb navigation carousel items -->
+                    <ul class="list-inline">
+                        <li><a id="carousel-selector-<?php echo $color_id ?>-0" class="selected">
+                            <img src="<?php echo $s_a_i['image'][0] ?>" class="img-responsive img-thumbnail">
+                        </a></li>
+
+                        <?php foreach ($s_a_i['image'][1] as $key => $image) { ?>
+                            <li><a id="carousel-selector-<?php echo $color_id ?>-<?php echo $key + 1 ?>">
+                                <img src="<?php echo $image ?>" class="img-responsive img-thumbnail">
+                            </a></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- main slider carousel -->
+            <div class="row">
+                <div class="col-md-5" id="slider-<?php echo $color_id ?>">
+                    <div class="col-md-12" id="carousel-bounding-box">
+                        <div id="myCarousel-<?php echo $color_id ?>" class="carousel slide">
+                            <!-- main slider carousel items -->
+                            <div class="carousel-inner">
+                                <div class="active item height-500" data-slide-number="0">
+                                    <img src="<?php echo $s_a_i['image'][0] ?>" class="img-responsive img-slider">
+                                </div>
+                                <?php foreach ($s_a_i['image'][1] as $key => $image) { ?>
+                                    <div class="item height-500" data-slide-number="<?php echo $key + 1  ?>">
+                                        <img src="<?php echo $image ?>" class="img-responsive img-slider">
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/main slider carousel-->
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#myCarousel-<?php echo $color_id ?>').carousel({
+                interval: 4000
+            });
+
+            // handles the carousel thumbnails
+            $('[id^=carousel-selector-<?php echo $color_id ?>-]').click( function(){
+                var id_selector = $(this).attr("id");
+                var id = id_selector.substr(id_selector.length -1);
+                id = parseInt(id);
+                $('#myCarousel-<?php echo $color_id ?>').carousel(id);
+                $('[id^=carousel-selector-<?php echo $color_id ?>-]').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            // when the carousel slides, auto update
+            $('#myCarousel-<?php echo $color_id ?>').on('slide.bs.carousel', function (e) {
+                var id = $('.item.active').data('slide-number');
+                console.log(id);
+                id = parseInt(id);
+                $('[id^=carousel-selector-<?php echo $color_id ?>-]').removeClass('selected');
+                $('[id=carousel-selector-<?php echo $color_id ?>-'+id+']').addClass('selected');
+            });
+        })
+    </script>
+</div>

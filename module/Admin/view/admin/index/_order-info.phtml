@@ -1,0 +1,93 @@
+<div class="col-md-6">
+    <div class="box">
+        <div class="box-header">
+            <h2 class="box-title">
+                Order in Pending
+                (<?php echo count($order_pendings) ?>)
+            </h2>
+        </div>
+        <div class="box-body">
+            <table id="example-2" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Date Created</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+               
+                <?php foreach($order_pendings as $order): ?>
+                    <tr>
+                        <?php 
+                            if($order->getUser() == null)
+                                echo "<td>".$order->getName()."</td>";
+                            else
+                                echo "<td><a href=\"{$this->url('users', ['action' => 'view', 'id' => $order->getUser()->getId()])}\">".$order->getName()."</a></td>";
+                        ?>
+                        <td><?php echo $order->getDateCreated(); ?></td>
+                        <td>
+                            <a href="<?php echo $this->url('orders',
+                                ['action' => 'view', 'id' => $order->getId()])?>", title="Show details">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                            </a>
+                            <a href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
+                                title="shipping">
+                                <i class="fa fa-truck"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="box">
+        <div class="box-header">
+            <h2 class="box-title">
+                Order in Shipping
+                (<?php echo count($order_shippings) ?>)
+            </h2>
+        </div>
+        <div class="box-body">
+            <table id="example-1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Date Created</th>
+                        <th>Ship At</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+               
+                <?php foreach($order_shippings as $order): ?>
+                    <tr>
+                        <?php 
+                            if($order->getUser() == null)
+                                echo "<td>".$order->getName()."</td>";
+                            else
+                                echo "<td><a href=\"{$this->url('users', ['action' => 'view', 'id' => $order->getUser()->getId()])}\">".$order->getName()."</a></td>";
+                        ?>
+                        <td><?php echo $order->getDateCreated(); ?></td>
+                        <td><?php echo $order->getShipAt(); ?></td>
+                        <td>
+                            <a href="<?php echo $this->url('orders',
+                                ['action' => 'view', 'id' => $order->getId()])?>", title="Show details">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                            </a>
+                            <a href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
+                                title="Complete Shipping">
+                                <i class="fa fa-check-square-o"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

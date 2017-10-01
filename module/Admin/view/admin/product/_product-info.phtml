@@ -1,0 +1,56 @@
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>Name:</th>
+        <td>
+        <?= $this->escapeHtml($product->getName()) ?></td>
+    </tr>
+    <tr>
+        <th>Category:</th>
+        <td>
+            <?php if ($product->getCategory() != null){ ?>
+            <a href="<?= $this->url('categories',
+                ['action' => 'view', 'id' => $product->getCategory()->getId()]) ?>">
+            <?php echo $product->getCategory()->getName(); ?>
+            <?php } ?>
+        </a>
+        </td>
+    </tr>
+    
+    <tr>
+        <th>Price:</th>
+        <td>
+        <?= $this->escapeHtml($product->getPrice()) ?></td>
+    </tr>
+
+    <tr>
+        <th>Intro:</th>
+        <td>
+        <?= $this->escapeHtml($product->getIntro()) ?></td>
+    </tr>
+    <tr>
+        <th>Description:</th>
+        <td>
+        <?= $this->escapeHtml($product->getDescription()) ?></td>
+    </tr>
+
+    <tr>
+        <th>Current Sale:</th>
+        <td>
+            <small class="label bg-red">
+                <?php echo $product->getCurrentSale() ?>%
+            </small>
+        </td>
+    </tr>
+
+    <tr>
+        <th>Keywords:</th>
+        <td>
+        <?= $this->escapeHtml($keywords) ?></td>
+    </tr>
+
+    <tr>
+        <th>Date Created:</th>
+        <td>
+        <?= $this->escapeHtml($product->getDateCreated()) ?></td>
+    </tr>
+</table>

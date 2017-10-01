@@ -1,0 +1,48 @@
+<div id="checkout">
+    <div class="checkout-outer" v-show="!success">
+        <div class="container">
+            <div class="checkout-inner">
+                <div class="row">
+                    <div class="col-lg-8 col-sm-8">
+                        <div class="center_section">
+                            <!--panel-shipping-address-->
+                            <?php include_once 'checkout/_shipping_form.phtml' ?>
+                            <!--panel-payment-method-->
+                            <?php include_once 'checkout/_payment_method.phtml' ?>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-4">
+                        <?php include_once 'checkout/_order_summary.phtml' ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-outer" v-show="success">
+        <div class="success-inner">
+            <div class="icon-stack text-center">
+                <i class="fa fa-check success"></i>
+                <h1>You're all Set !</h1>
+                <span>Order Code #: {{ order_id }} </span>
+                <p class="lead text-center">
+                    Thank you for order my products <br />
+                    We sent you your order code to your mail!
+                    If you want check your order please use code in tracking!
+                    
+                </p>
+                <p class="text-center">
+                </p>
+                <!--            <ul class="tag_ul">-->
+                <!--                <li>B&O Beo Labs III Speaker</li>-->
+                <!--                <li>Ottoman Chaise </li>-->
+                <!--                <li>Me and Earl and the Dying Girl Ebook</li>-->
+                <!--                <li class="last">YAMAHA MONTAGE 8 Synthesizer 88 Key</li>-->
+                <!--            </ul>-->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="/app/js/checkout.js"></script>

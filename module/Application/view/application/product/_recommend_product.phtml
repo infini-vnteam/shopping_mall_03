@@ -1,0 +1,20 @@
+<div id="related-listings-container">
+    <div id="related-listings-inner">
+        <div id="shop-info">
+            <h5>Tag</h5>
+            <!--            <span>in Sofia, Bulgaria</span>-->
+        </div>
+        <div id="related_item">
+            <md-layout md-gutter md-row>
+                <md-layout md-flex="33"
+                           class="md-raised"
+                           v-for="key in product.keywords"
+                           :key="key">
+                    <md-button @click="search(key)">
+                        {{ key }}
+                    </md-button>
+                </md-layout>
+            </md-layout>
+        </div>
+    </div>
+</div>

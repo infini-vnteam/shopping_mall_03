@@ -1,0 +1,24 @@
+<div id="category">
+    <div class="container category_list" id="content">
+        <div class="clearfix">
+            <div class="dropdown pull-right">
+                <span class="sort_by">Sort by: </span>
+                <select class="btn btn-default"
+                        v-model="sort"
+                        @change="changeFilter">
+                    <option value="">None</option>
+                    <option value="htl">Price High to Low</option>
+                    <option value="lth">Price Low to High</option>
+                    <option value="new">Newest Items</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row clearfix mt15">
+            <?php include_once 'view/_sidebar.phtml' ?>
+            <?php include_once 'view/_listProduct.phtml' ?>
+        </div>
+    </div>
+</div>
+
+<script src="/app/js/category.js"></script>

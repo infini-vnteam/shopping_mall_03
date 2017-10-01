@@ -1,0 +1,24 @@
+{
+    "name": "shopping-mall",
+    "version": "1.0.0",
+    "description": "shopping_mall_03 (Training)\r #Error : method zend\\view\\helper\\headtitle::__tostring() must not throw an exception, caught zend\\i18n\\exception\\extensionnotloadedexception\r Instal intl extension: php5.6-intl\r #composer : composer install; composer update; composer development-enable; composer dump-autoload",
+    "main": "index.js",
+    "dependencies": {
+        "express": "^4.15.4",
+        "socket.io": "^2.0.3"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tinywitch/shopping_mall_03.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/tinywitch/shopping_mall_03/issues"
+    },
+    "homepage": "https://github.com/tinywitch/shopping_mall_03#readme"
+}

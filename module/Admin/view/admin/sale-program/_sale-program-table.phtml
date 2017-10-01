@@ -1,0 +1,57 @@
+<?php
+    function status_class($stt) {
+        if($stt == 0) return "bg-green";
+        if($stt == 1) return "bg-blue";
+        if($stt == 2) return "bg-yellow";
+        if($stt == 3) return "bg-red";
+    }
+
+    function status_content($stt) {
+        if($stt == 0) return "active";
+        if($stt == 1) return "pending";
+        if($stt == 2) return "done";
+        if($stt == 3) return "cancel";
+    }
+?>
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th style="width: 15px">#</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $i = 1 ?>
+        <?php foreach($sale_programs as $s): ?>
+            <tr>
+                <td><?php echo $i++ ?></td>
+                <td><?php echo $s->getName() ?></td>
+                <td><?php echo $s->getDateStart() ?></td>
+                <td><?php echo $s->getDateEnd() ?></td>
+                <td>
+                    <small class="label <?php echo status_class($s->getStatus())?>">
+                        <?php echo status_content($s->getStatus()); ?>
+                    </small>
+                </td>
+                <td>
+                    <a href="<?= $this->url('sale_programs', ['action' => 'view', 'id' => $s->getId()]) ?>"
+                        title="show detail">
+                        <i class="glyphicon glyphicon-log-in"></i>
+                    </a>
+                    <a href="<?= $this->url('sale_programs', ['action' => 'edit', 'id' => $s->getId()]) ?>"
+                        title="edit">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a href="<?= $this->url('sale_programs', ['action' => 'cancel', 'id' => $s->getId()]) ?>"
+                        title="cancel">
+                        <i class="glyphicon glyphicon-trash"></i>    
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

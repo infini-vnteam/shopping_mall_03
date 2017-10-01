@@ -1,0 +1,46 @@
+<div class="box box-danger">
+    <div class="box-header">
+        <h2 class="box-title">Order Chart</h2>
+        <select class="form-control select-box" id="order-select">
+        	<option value="1">Current Month</option>
+        	<option value="2">Current year</option>
+        </select>
+    </div>
+    <div class="box-body">
+        <div id="order-chart" style="width: 478px;height: 250px" width="478" height="250"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/orderchart',
+            data: {
+                'type' : 1
+            },
+            success: function(data) {
+                var data = JSON.parse(data);
+                Highcharts.chart('order-chart', data);                         
+            }
+        });
+      
+        function load_order_chart(){
+            var type = $('#order-select option:selected').val();
+            $.ajax({
+                type: 'POST',
+                url: '/admin/orderchart',
+                data: {
+                    'type' : type
+                },
+                success: function(data) {
+                  var data = JSON.parse(data);
+                  Highcharts.chart('order-chart', data);                              
+                }
+            })
+        }
+
+        $('#order-select').on("change", function(){
+            load_order_chart();
+        });
+    });
+</script>

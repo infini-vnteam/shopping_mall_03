@@ -1,0 +1,75 @@
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse bgwhite" id="navbar-menu">
+    <ul class="nav navbar-nav megamenu" data-in="fadeInDown" data-out="fadeOutUp">
+        <?php foreach ($mainCategories as $mainCategory) : ?>
+            <?php $mainCategoryId = $mainCategory->getId(); ?>
+
+            <li class="dropdown megamenu-fw">
+                <a href="/category/view/<?php echo $mainCategoryId ?>"
+                   class="dropdown-toggle heading_anchor"
+                   data-toggle="dropdown"
+                   onmouseover="megamenu('menu<?php echo $mainCategoryId ?>');"
+                   onclick="location.href = '/category/view/<?php echo $mainCategoryId ?>';"
+                >
+                    <?php echo $mainCategory->getName(); ?>
+                </a>
+                <ul class="dropdown-menu megamenu-content" role="menu">
+                    <li>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="category-outer">
+                                    <div class="content">
+                                        <ul class="menu-col inner-menu-col">
+                                            <?php foreach ($arrCateTree[$mainCategoryId] as $sub) : ?>
+                                                <li class="a_one"
+                                                    onmouseover="megamenu('menu<?php echo $mainCategoryId . '' . $sub->getId(); ?>');"
+                                                    onclick="location.href = '/category/view/<?php echo $sub->getId(); ?>';"
+                                                >
+                                                    <a href="/category/view/<?php echo $sub->getId(); ?>">
+                                                        <?php echo $sub->getName(); ?>
+                                                    </a>
+                                                    <span class=" fa fa-angle-right pull-right"></span>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--Sub menu level 2-->
+                            <div class="col-md-9 sub_menu" id="menu<?php echo $mainCategoryId ?>">
+
+                            </div>
+
+                            <?php foreach ($arrCateTree[$mainCategoryId] as $sub) : ?>
+                                
+                                <div class="col-md-9 sub_menu"
+                                     id="menu<?php echo $mainCategoryId . '' . $sub->getId(); ?>">
+                                    <div class="row">
+                                        <div class="col-menu col-md-4">
+                                            <div class="content">
+<!--                                                Sub menu level 3-->
+                                                <ul class="menu-col">
+
+                                                    <?php foreach($sub->getChildrens() as $children) : ?>
+                                                    <li>
+                                                        <a href="/category/view/<?php echo $children->getId(); ?>"><b>Placeholder <?php echo $children->getName(); ?></b></a>
+                                                    </li>
+                                                    <?php endforeach; ?>
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div><!-- end col-4 -->
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div><!-- end row -->
+                    </li>
+                </ul>
+            </li>
+        <?php endforeach; ?>
+        <li class="sign_li"><a href="/sale" class="signin">Sale</a></li>
+    </ul>
+</div>
+<!-- /.navbar-collapse -->

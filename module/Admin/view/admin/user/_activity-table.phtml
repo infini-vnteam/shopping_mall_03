@@ -1,0 +1,25 @@
+<ul class="timeline">
+	<?php foreach ($activities_by_day as $key => $activities) { ?>	
+		<li class="time-label">
+			<span class="bg-red">
+				<?php echo $key ?>
+			</span>
+		</li>
+		<?php foreach ($activities as $key => $activity) { ?>	
+		<li>
+			<i class="<?php echo $activity['icon-class'] ?>"></i>
+			<div class="timeline-item">
+				<span class="time">
+					<i class="fa fa-clock-o"></i>
+					<?php echo $activity['time'] ?>
+				</span>
+				<div class="timeline-body">
+					<?php echo $activity['content'] ?>
+            	</div>
+			</div>
+		</li>
+		<?php } ?>
+	<?php } ?>
+</ul>
+<input type="hidden" id="user_id" value="<?php echo $user->getId() ?>"></p>
+<button class="btn btn-primary btn-load-more" id="2">Loadmore</button>

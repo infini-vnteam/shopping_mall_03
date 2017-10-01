@@ -1,0 +1,46 @@
+<div class="box box-success">
+    <div class="box-header">
+        <h2 class="box-title">Review Chart</h2>
+        <select class="form-control select-box" id="review-select">
+        	<option value="1">Current Month</option>
+        	<option value="2">Current year</option>
+        </select>
+    </div>
+    <div class="box-body">
+        <div id="review-chart" style="width: 478px;height: 250px" width="478" height="250"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/reviewchart',
+            data: {
+                'type' : 1
+            },
+            success: function(data) {
+                var data = JSON.parse(data);
+                Highcharts.chart('review-chart', data);                             
+            }
+        });
+      
+        function load_review_chart(){
+            var type = $('#review-select option:selected').val();
+            $.ajax({
+                type: 'POST',
+                url: '/admin/reviewchart',
+                data: {
+                    'type' : type
+                },
+                success: function(data) {
+                  var data = JSON.parse(data);
+                  Highcharts.chart('review-chart', data);                               
+                }
+            })
+        }
+
+        $('#review-select').on("change", function(){
+            load_review_chart();
+        });
+    });
+</script>

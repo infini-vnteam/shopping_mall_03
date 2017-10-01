@@ -1,0 +1,34 @@
+<div class="right_section">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <b>Order Summary</b>
+        </div>
+        <div class="panel-body">
+            <div class="order-summary-inner">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <span class=" pull-right">${{ sub_total }}</span>
+                        Sub total
+                    </li>
+                    <li class="list-group-item">
+                        <span class="pull-right">${{ ship_tax }}</span>
+                        Shipping
+                    </li>
+                    <li class="list-group-item">
+                        <span class=" pull-right">${{ sub_total + ship_tax }}</span>
+                        <b>Total</b>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <form method="post" target="/cart/checkout">
+                <button type="submit"
+                        class="btn btn-success btn-block"
+                        @click.prevent="checkout">
+                    <b>Place Your Order</b>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

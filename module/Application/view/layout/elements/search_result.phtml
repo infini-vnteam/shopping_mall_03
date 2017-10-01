@@ -1,0 +1,75 @@
+<md-whiteframe md-tag="section">
+    <md-layout md-row md-align="right"
+               class="badge badge-transparent">
+        <md-button class="md-icon-button"
+                   @click="closeSearchResult">
+            <md-icon class="close-search">clear</md-icon>
+            <md-tooltip>Close</md-tooltip>
+        </md-button>
+    </md-layout>
+
+    <transition name="custom-classes-transition"
+                enter-active-class="animated bounceOutDown"
+                leave-active-class="animated bounceOutUp">
+        <md-layout gutter
+                   class="content"
+                   v-if="results.length > 0">
+            <md-layout md-flex-large="20"
+                       md-flex-medium="20"
+                       md-flex-small="25"
+                       md-flex-xsmall="50"
+                       md-align="center"
+                       v-for="result in results"
+                       :key="result._id">
+                <md-layout md-flex=90>
+                    <md-card md-with-hover>
+                        <md-card-area>
+                            <md-card-media>
+                                <div class="badge badge-sale"
+                                     v-if="result._source.sale > 0">
+                                    Sale
+                                    <md-tooltip>{{ result._source.sale }}%</md-tooltip>
+                                </div>
+                                <md-layout md-row md-align="right"
+                                           class="badge badge-transparent">
+                                    <div v-for="color in result._source.colors"
+                                         :key="color"
+                                         :style="{'color': color}">
+                                        <md-icon>brightness_1</md-icon>
+                                        <md-tooltip>{{ color }}</md-tooltip>
+                                    </div>
+                                </md-layout>
+                                <img :src="result._source.image"
+                                     :onclick="'location.href = \'/product/view/' + result._source.id + '\''">
+                            </md-card-media>
+
+                            <md-card-header>
+                                <a class="md-title"
+                                   :href="'/product/view/' + result._source.id">
+                                    {{ truncate(result._source.name) }}
+                                </a>
+                                <div class="md-subhead">{{ truncate(join(result._source.categories, ', ')) }}</div>
+                            </md-card-header>
+
+                            <md-card-content>
+                                Price: ${{ getCurrentPrice(result._source) }}
+                            </md-card-content>
+                        </md-card-area>
+                    </md-card>
+                </md-layout>
+            </md-layout>
+        </md-layout>
+        <md-layout v-else
+                   md-column>
+            <md-layout md-align="center">
+                <md-icon class="md-size-3x"
+                         style="font-size: 50px; margin: 30px 0;">
+                    sentiment_neutral
+                </md-icon>
+            </md-layout>
+            <md-layout md-align="center">
+                <h3>No results matched your query: "{{ keyword }}".</h3>
+            </md-layout>
+        </md-layout>
+    </transition>
+</md-whiteframe>

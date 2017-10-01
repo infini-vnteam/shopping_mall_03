@@ -1,0 +1,22 @@
+<md-table>
+    <md-table-header>
+        <md-table-head>Product</md-table-head>
+        <md-table-head>Color</md-table-head>
+        <md-table-head>Size</md-table-head>
+        <md-table-head>Quantity</md-table-head>
+        <md-table-head>Price</md-table-head>
+        <md-table-head>Total</md-table-head>
+    </md-table-header>
+
+    <md-table-body>
+        <md-table-row v-for="(item, index) in order.items"
+                      :key="index">
+            <md-table-cell>{{ item.name }}</md-table-cell>
+            <md-table-cell>{{ item.color }}</md-table-cell>
+            <md-table-cell>{{ item.size }}</md-table-cell>
+            <md-table-cell>{{ item.quantity }}</md-table-cell>
+            <md-table-cell>{{ item.price }}</md-table-cell>
+            <md-table-cell>{{ item.total }}</md-table-cell>
+        </md-table-row>
+    </md-table-body>
+</md-table>

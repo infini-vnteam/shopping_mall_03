@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-8">
+        <div class="box">
+            <div class="box-header">
+                <h3>Order's Informations</h3>
+            </div>
+            <div class="box-body no-padding">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 15px">#</th>
+                            <th>Product's Name</th>
+                            <th>Product's Image</th>
+                            <th>Product's Color</th>
+                            <th>Product's Size</th>
+                            <th>Quantity</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    <?php foreach($items as $item): ?>
+                        <tr>
+                            <td><?php echo ++$i ?></td>
+                            <td><a href="<?php echo $this->url('products',['action' => 'view',
+                                'id' => $item['product_id']]) ?>">
+                                <?php echo $item['product_name'] ?>
+                            </a></td>
+                            <td>
+                                <img src="<?php echo $this->basePath($item['product_image']) ?>" class="image_product">
+                            </td>
+                            <td>
+                                <i class="set-size-icon pull-right color-<?php echo $item['color'] ?>" >
+                                </i>
+                            </td>
+                            <td><strong class="pull-right"><?php echo $item['size'] ?></strong></td>
+                            <td><p class="pull-right"><?php echo $item['quantity'] ?></p></td>
+                            <td><?php echo $item['cost'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                        <tr>
+                            <td colspan="5">Tong tien</td>    
+                            <td><p class="pull-right"><?php echo $order->getCost(); ?></p></td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">Status</td>    
+                            <td>
+                                <small class="label pull-right <?php echo status_class($order->getStatus())?>">
+                                    <?php echo status_content($order->getStatus()); ?>
+                                </small>
+                            </td>
+                        </tr>
+                        <?php if($order->getStatus() != 3 ) { ?>
+                            <tr>
+                                <td colspan="5">Action</td>    
+                                <td>
+                                    <a class="pull-right" href="<?= $this->url('orders',
+                                        ['action' => 'edit', 'id' => $order->getId()]) ?>">
+                                        <i class="fa fa-truck"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

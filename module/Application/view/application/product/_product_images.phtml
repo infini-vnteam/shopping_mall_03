@@ -1,0 +1,17 @@
+<!-- Top part of the slider -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="zoom product-image">
+            <img :src="current_image">
+        </div>
+        <ul class="hide-bullets smnav col-md-2">
+            <li v-for="(image, index) in current_list_image" :key="index">
+                <a class="thumbnail"
+                   :class="{'active':index == current_image_index}"
+                   @click="changeImage(index)">
+                    <img :src="image">
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

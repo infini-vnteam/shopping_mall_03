@@ -1,0 +1,45 @@
+<div class="box">
+    <div class="box-header">
+        <span class="box-title"><strong>Products</strong></span>
+        <a href="<?= $this->url('products', ['action' => 'delete', 'id' => $product->getId()]) ?>">
+            <span class="btn-icon"><i class="fa fa-trash"></i></span>
+        </a>
+        <a href="<?= $this->url('products', ['action' => 'edit', 'id' => $product->getId()]) ?>">
+            <span class="btn-icon"><i class="fa fa-edit"></i></span>
+        </a>
+    </div>
+    <div class="box-body">
+        <h2 class="margin-bottom-20">
+            <?php echo $product->getName() ?></h2>
+
+        <div class="row">
+            <div class="col-md-5">
+                <img src="<?php echo $this->basePath($product->getImage()) ?>" class="book-image width-custom">
+            </div>
+
+            <div class="col-md-6">
+                <?php include_once '_product-info.phtml';?>
+                <a href="<?= $this->url('products', ['action' => 'addcolor', 'id' => $product->getId()]) ?>">
+                    <button class="btn btn-primary btn-sm">
+                        Add new color
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-header">
+        <h2 clasa="box-title">Available Colors (<?php echo count($size_and_images)?>)</h2>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <?php foreach ($size_and_images as $color_id => $s_a_i) { ?>
+                <div class="col-md-6">
+                    <?php include '_image-details.phtml';?>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+</div>

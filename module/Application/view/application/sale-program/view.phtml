@@ -1,0 +1,47 @@
+<div id="sale-details">
+    <md-layout md-flex="90">
+        <md-card>
+            <md-card-header>
+                <div class="md-title">
+                    <md-icon style="color: orange">style</md-icon>
+                    <span><strong>{{ sale.name }}</strong></span>
+                </div>
+                <div class="md-subhead">
+                    <md-icon>access_time</md-icon>
+                    <span>from {{ sale.date_start }} to {{ sale.date_end }}</span>
+                </div>
+            </md-card-header>
+
+            <md-card-content>
+                <md-layout>
+                    <md-layout md-flex="25"
+                               md-align="center"
+                               v-for="(product, index) in sale.products"
+                               :key="index">
+                        <md-whiteframe md-tag="section"
+                                       class="product-sale-card">
+                            <img :src="product.image">
+                            <div class="product-sale-card-info">
+                                <a :href="'/product/view/'+product.id">
+                                    {{ product.name }}
+                                </a>
+                                <div>
+                                    Sale Price: <span class="price">${{ product.current_price }}</span>
+                                </div>
+                                <div>
+                                    Sale <span class="badge badge-sale">%{{ product.sale }}</span>
+                                </div>
+                            </div>
+                        </md-whiteframe>
+                    </md-layout>
+                </md-layout>
+            </md-card-content>
+
+            <md-card-actions>
+                <div style="flex:1"></div>
+            </md-card-actions>
+        </md-card>
+    </md-layout>
+</div>
+
+<script src="/app/js/sale-details.js"></script>

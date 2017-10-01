@@ -1,0 +1,59 @@
+<div id="sale">
+    <md-layout md-gutter
+               v-if="sale_programs.length > 0">
+        <md-layout md-flex="33" md-flex-xsmall="100" md-flex-small="50"
+                   md-align="center"
+                   v-for="sale in sale_programs"
+                   :key="sale.id">
+            <md-layout md-flex="90">
+                <md-card>
+                    <md-card-header>
+                        <div class="md-title">
+                            <md-icon style="color: orange">style</md-icon>
+                            <span><strong>{{ sale.name }}</strong></span>
+                        </div>
+                        <div class="md-subhead">
+                            <md-icon>access_time</md-icon>
+                            <span>from {{ sale.date_start }} to {{ sale.date_end }}</span>
+                        </div>
+                    </md-card-header>
+
+                    <md-card-content>
+                        <md-layout>
+                            <md-layout md-flex="100"
+                                       md-align="center"
+                                       v-for="(product, index) in sale.products"
+                                       :key="index">
+                                <md-whiteframe md-tag="section"
+                                               class="product-sale-card">
+                                    <img :src="product.image">
+                                    <div class="product-sale-card-info">
+                                        <a :href="'/product/view/'+product.id">
+                                            {{ product.name }}
+                                        </a>
+                                        <div>
+                                            Sale Price: <span class="price">${{ product.current_price }}</span>
+                                        </div>
+                                        <div>
+                                            Sale <span class="badge badge-sale">%{{ product.sale }}</span>
+                                        </div>
+                                    </div>
+                                </md-whiteframe>
+                            </md-layout>
+                        </md-layout>
+                        <span v-if="sale.num_products > sale.products.length">
+                                    <i>*2 products in total {{ sale.num_products }} sale products</i>
+                                </span>
+                    </md-card-content>
+                    <md-layout md-vertical-align="end" md-align="end">
+                        <md-card-actions>
+                            <md-button @click="viewDetails(sale.id)">View Details</md-button>
+                        </md-card-actions>
+                    </md-layout>
+                </md-card>
+            </md-layout>
+        </md-layout>
+    </md-layout>
+</div>
+
+<script src="/app/js/sale.js"></script>

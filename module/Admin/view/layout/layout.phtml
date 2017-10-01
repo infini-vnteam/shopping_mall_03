@@ -1,0 +1,138 @@
+<?= $this->doctype() ?>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle('ZF Skeleton Application')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        // ->prependStylesheet($this->basePath('css/style.css'))
+        ->prependStylesheet($this->basePath('css/admin.css'))
+        ->prependStylesheet($this->basePath('app/css/integrated.css'))
+        ->prependStylesheet($this->basePath('assets/select2/dist/css/select2.min.css'))
+        ->prependStylesheet($this->basePath('assets/AdminLTE/dist/css/skins/skin-blue.min.css'))
+        ->prependStylesheet($this->basePath('assets/AdminLTE/dist/css/AdminLTE.min.css'))
+        ->prependStylesheet($this->basePath('assets/components-font-awesome/css/font-awesome.min.css'))
+        ->prependStylesheet($this->basePath('assets/bootstrap/dist/css/bootstrap-theme.min.css'))
+        ->prependStylesheet($this->basePath('assets/bootstrap/dist/css/bootstrap.min.css'))
+        ->prependStylesheet($this->basePath('assets/datatables/media/css/dataTables.semanticui.min.css'))
+        ->prependStylesheet($this->basePath('assets/semantic/dist/semantic.min.css'))
+        ->prependStylesheet($this->basePath('assets/bootstrap-fileinput/themes/explorer/theme.css'))
+        ->prependStylesheet($this->basePath('assets/bootstrap-fileinput/css/fileinput.min.css'))
+        ->prependStylesheet($this->basePath('assets/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'))
+    ?>
+
+    <!-- Scripts -->
+
+    <?= $this->headScript()
+        //->prependFile($this->basePath('pages/admin.js'))
+        //->prependFile('http://shopping.app:8056/socket.io/socket.io.js')
+        //->prependFile($this->basePath('js/vue-scroller.js'))
+        ->prependFile($this->basePath('js/me.js'))
+        ->prependFile($this->basePath('assets/bootstrap-fileinput/themes/explorer/theme.min.js'))
+        ->prependFile($this->basePath('js/fileinput.min.js'))
+        ->prependFile($this->basePath('assets/highcharts/highcharts.js'))
+        //->prependFile($this->basePath('assets/select2/dist/js/select2.min.js'))
+        ->prependFile($this->basePath('assets/semantic/dist/semantic.min.js'))
+        ->prependFile($this->basePath('assets/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'))
+        ->prependFile($this->basePath('assets/moment/min/moment.min.js'))
+        ->prependFile($this->basePath('assets/AdminLTE/dist/js/demo.js'))
+        ->prependFile($this->basePath('assets/AdminLTE/dist/js/adminlte.min.js'))
+        ->prependFile($this->basePath('assets/datatables/media/js/dataTables.semanticui.min.js'))
+        ->prependFile($this->basePath('assets/datatables/media/js/jquery.dataTables.min.js'))
+        ->prependFile($this->basePath('assets/bootstrap/dist/js/bootstrap.min.js'))
+        //->prependFile($this->basePath('assets/axios/dist/axios.js'))
+        //->prependFile($this->basePath('assets/vue/dist/vue.js'))
+        ->prependFile($this->basePath('assets/jquery/dist/jquery.min.js'))
+    ?>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper" id="app">
+    <?php include_once 'html/nav.php'; ?>
+    <?php include_once 'html/sidebar.php'; ?>
+    <div class="content-wrapper">
+        <section class="content">
+            <?= $this->content ?>
+        </section>
+    </div>
+<!--     <div id="chatbox" v-if="isInited">
+        <div class="chat_window">
+            <div class="top_menu">
+                <div class="buttons">
+                    <div class="button close" @click="closeChatbox()"></div>
+                    <!--                    <div class="button minimize"></div>-->
+
+        <!-- disable chat box-->
+
+                   <!--  <div class="button maximize" @click="openChatbox()"></div>
+                </div>
+                <div class="title">{{ current_chatting_user }}</div>
+            </div>
+            <div v-if="!isChatBoxClosed">
+                <ul id="messages_list" class="messages" v-chat-scroll>
+                    <div v-for="message in messages">
+                        <li class="message left appeared" v-if="message.sender_id != user.id">
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">{{ message.content }}</div>
+                            </div>
+                        </li>
+                        <li class="message right appeared" v-else>
+                            <div class="avatar"></div>
+                            <div class="text_wrapper">
+                                <div class="text">{{ message.content }}</div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+                <div class="bottom_wrapper clearfix">
+                    <div class="message_input_wrapper">
+                        <input v-on:keyup.13="sendMessage()" class="message_input" v-model="text"
+                               placeholder="Type your message here..."/></div>
+                    <div class="send_message" @click="sendMessage()">
+                        <div class="icon"></div>
+                        <div class="text">Send</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ -->
+    <!-- </div> -->
+    <!-- <div id="chatlist" v-if="isInited"> -->
+        <!-- <div class="chat_list">
+            <div class="top_menu">
+                <div class="buttons">
+                    <div class="button close" @click="closeChatList()"></div>
+                    <div class="button maximize" @click="openChatList()"></div>
+                </div>
+                <div class="title">Chat list</div>
+            </div>
+            <div v-if="!isChatListClosed">
+
+                <ul id="messages_list" class="chatrooms">
+                    <li v-for="item in chatlist" class=" chatroom appeared">
+                        <div class="avatar"></div>
+                        <div class="text_wrapper">
+                            <div class="text" @click="openChatroom(item.id)">
+                                    {{ item.user.name }}
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div> -->
+    <!-- </div> --> -->
+    <!-- end disable chat box-->
+    <?= $this->inlineScript() ?>
+</div>
+</body>
+
+</html>
+

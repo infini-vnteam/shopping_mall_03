@@ -1,0 +1,53 @@
+<div class="col-md-6">
+    <div class="box">
+        <div class="box-header">
+            <h2 class="box-title">
+                Sale Program need to be Active
+                (<?php echo count($sale_prodgram_need_active) ?>)
+            </h2>
+        </div>
+        <div class="box-body">
+            <ul>
+                <?php foreach ($sale_prodgram_need_active as $sp) { ?>
+                    <li>
+                        <a href="<?= $this->url('sale_programs', ['action' => 'view', 'id' => $sp->getId()]) ?>">
+                            <?php echo $sp->getName() ?>
+                        </a>
+                        (<?php echo $sp->getDateStart() ?>
+                        -> <?php echo $sp->getDateEnd() ?>
+                        )
+                        <a href="<?= $this->url('sale_programs', ['action' => 'setStatus', 'id' => $sp->getId()]) ?>" 
+                            class="fa fa-check pull-right" title="Set Done"></a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="box">
+        <div class="box-header">
+            <h2 class="box-title">
+                Sale Program need to be Done
+                (<?php echo count($sale_prodgram_need_done) ?>)
+            </h2>
+        </div>
+        <div class="box-body">
+            <ul>
+                <?php foreach ($sale_prodgram_need_done as $sp) { ?>
+                    <li>
+                        <a href="<?= $this->url('sale_programs', ['action' => 'view', 'id' => $sp->getId()]) ?>">
+                            <?php echo $sp->getName() ?>
+                        </a>
+                        (<?php echo $sp->getDateStart() ?>
+                        -> <?php echo $sp->getDateEnd() ?>
+                        )
+                        <a href="<?= $this->url('sale_programs', ['action' => 'setStatus', 'id' => $sp->getId()]) ?>" 
+                            class="fa fa-check pull-right" title="Set Done"></a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+</div>

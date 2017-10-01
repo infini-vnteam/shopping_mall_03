@@ -1,0 +1,46 @@
+<div class="box box-primary">
+    <div class="box-header">
+        <h2 class="box-title">Earned Money Chart</h2>
+        <select class="form-control select-box" id="money-select">
+        	<option value="1">Current Month</option>
+        	<option value="2">Current year</option>
+        </select>
+    </div>
+    <div class="box-body">
+        <div id="money-chart" style="width: 478px;height: 250px" width="478" height="250"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/moneychart',
+            data: {
+                'type' : 1
+            },
+            success: function(data) {
+                var data = JSON.parse(data);
+                Highcharts.chart('money-chart', data);                           
+            }
+        });
+      
+        function load_money_chart(){
+            var type = $('#money-select option:selected').val();
+            $.ajax({
+                type: 'POST',
+                url: '/admin/moneychart',
+                data: {
+                    'type' : type
+                },
+                success: function(data) {
+                  var data = JSON.parse(data);
+                  Highcharts.chart('money-chart', data);                                
+                }
+            })
+        }
+
+        $('#money-select').on("change", function(){
+            load_money_chart();
+        });
+    });
+</script>

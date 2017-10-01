@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Add Category</h3>
+            </div>
+            <?= $this->form()->openTag($form); ?>
+                <div class="box-body">
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('name')); ?>
+                        <?= $this->formElement($form->get('name')); ?>
+                        <?= $this->formElementErrors($form->get('name')); ?>                
+                    </div>
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('description')); ?>
+                        <?= $this->formElement($form->get('description')); ?>
+                        <?= $this->formElementErrors($form->get('description')); ?>                  
+                    </div>
+                    <div class="form-group">
+                        <?= $this->formLabel($form->get('parent_id')); ?>
+                        <?= $this->formElement($form->get('parent_id')); ?>
+                        <?= $this->formElementErrors($form->get('parent_id')); ?>                  
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <?= $this->formElement($form->get('submit')); ?>
+                </div>
+            <?= $this->form()->closeTag(); ?>   
+        </div>
+    </div>
+</div>
+

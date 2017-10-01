@@ -1,0 +1,42 @@
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th style="width: 15px">#</th>
+            <th>Name</th>
+            <th>Number of Product</th>
+            <th>Description</th>
+            <th>Parent Category</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $i = 1 ?>
+        <?php foreach($categories as $category): ?>
+            <tr>
+                <td><?php echo $i++ ?></td>
+                <td><?php echo $category->getName() ?></td>
+                <td><?php echo count($category->getProducts()) ?></td>
+                <td><?php echo $category->getDescription() ?></td>
+                <td>
+                    <?php if ($category->getParent() != null){ ?>
+                        <a href="<?= $this->url('categories',
+                            ['action' => 'view', 'id' => $category->getParent()->getId()]) ?>">
+                            <?php echo $category->getParent()->getName(); ?>
+                        </a>
+                    <?php } ?>
+                </td>
+                <td>
+                    <a href="<?= $this->url('categories', ['action' => 'view', 'id' => $category->getId()]) ?>">
+                        <i class="glyphicon glyphicon-log-in"></i>
+                    </a>
+                    <a href="<?= $this->url('categories', ['action' => 'edit', 'id' => $category->getId()]) ?>">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </a>
+                    <a href="<?= $this->url('categories', ['action' => 'delete', 'id' => $category->getId()]) ?>">
+                        <i class="glyphicon glyphicon-trash"></i>    
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

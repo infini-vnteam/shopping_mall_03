@@ -1,0 +1,49 @@
+<div class="track-form" v-if="track_form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <md-card class="md-transparent">
+                    <md-card-area>
+                        <md-card-header>
+                            <div class="md-title">Track your order</div>
+                            <!--                                    <div class="md-subhead">Use order id</div>-->
+                        </md-card-header>
+
+                        <md-card-content>
+                            <md-input-container :class="[errors.has('email') ? 'md-input-invalid' : '']">
+                                <label>Email</label>
+                                <md-input name="email"
+                                          v-model="email"
+                                          v-validate="'required|email'">
+                                </md-input>
+                                <span class="md-error"
+                                      v-show="errors.has('email')">
+                                            {{ errors.first('email') }}
+                                        </span>
+                            </md-input-container>
+
+                            <md-input-container :class="[errors.has('order id') ? 'md-input-invalid' : '']">
+                                <label>Order id</label>
+                                <md-input name="order id"
+                                          v-model="order_id"
+                                          v-validate="'required'">
+                                </md-input>
+                                <span class="md-error"
+                                      v-show="errors.has('order id')">
+                                            {{ errors.first('order id') }}
+                                        </span>
+                            </md-input-container>
+                        </md-card-content>
+                    </md-card-area>
+
+                    <md-card-actions>
+                        <md-button class="md-primary md-raised"
+                                   @click="tracking">
+                            Tracking
+                        </md-button>
+                    </md-card-actions>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</div>

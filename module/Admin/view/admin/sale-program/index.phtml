@@ -1,0 +1,14 @@
+<div class="box">
+    <div class="box-header">
+        <h2 clasa="box-title">Sale Programs</h2>
+    </div>
+    <div class="box-body">
+        <?php include_once '_sale-program-table.phtml';?>
+    </div>
+    <div class="box-footer with-border">
+		<a href="<?= $this->url('sale_programs', ['action' => 'add']); ?>" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i>
+            <span>Add New Sale Program</span>
+        </a>
+	</div>
+</div>

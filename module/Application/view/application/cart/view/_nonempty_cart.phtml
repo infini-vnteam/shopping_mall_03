@@ -1,0 +1,111 @@
+<div class="cart-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 col-md-12 col-xs-12">
+                <div class="cart-items">
+                    <div class="panel panel-default">
+                        <div class="panel-heading number-item">
+                            <?php echo $data->totalItem ?> item(s) in cart
+                        </div>
+                        <?php foreach ($data->items as $item): ?>
+                            <div class="panel-body cart_pd" id="item<?php echo $item->id ?>">
+                                <div class="row">
+                                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                                        <div class="cart_img">
+                                            <img src="<?php echo $item->img ?>"
+                                                 alt="img" class="img-responsive" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-sm-7 col-xs-12 ">
+                                        <div class="cart_product_description">
+                                            <p><b><?php echo $item->name ?></b></p>
+                                            <p>Color: <?php echo $item->color ?> | Size: <?php echo $item->size ?></p>
+                                            <p></p>
+                                            <span>
+                                                <button class="btn btn-danger delete-item"
+                                                        data-id="<?php echo $item->id ?>">
+                                                    Remove
+                                                </button>
+											</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                                        <div class="cart_product_rate">
+                                            Price:
+                                            <span>$<?php echo $item->price ?></span>
+                                        </div>
+                                        <div class="cart-quantity">
+                                            <div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <button type="button"
+                                                                class="btn btn-default btn-number"
+                                                                data-type="minus"
+                                                                data-field="<?php echo $item->id ?>">
+                                                            <span class="fa fa-minus"></span>
+                                                        </button>
+                                                    </span>
+                                                <input type="text" name="<?php echo $item->id ?>"
+                                                       class="form-control input-number center"
+                                                       value="<?php echo $item->quantity ?>"
+                                                       min="1"
+                                                       max="100">
+                                                <span class="input-group-btn">
+                                                        <button type="button"
+                                                                class="btn btn-default btn-number"
+                                                                data-type="plus"
+                                                                data-field="<?php echo $item->id ?>">
+                                                            <span class="fa fa-plus"></span>
+                                                        </button>
+                                                    </span>
+                                            </div>
+                                        </div>
+                                        <div class="cart_product_rate">
+                                            Total:
+                                            <span class="sub-total-price" id="total-price<?php echo $item->id ?>">
+                                                $<?php echo $item->price * $item->quantity ?>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-12 col-xs-12">
+                <div class="cart-payment">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <b>Subtotal price</b>
+                        </div>
+                        <div class="panel-body" style="padding-bottom:5px;">
+                            <div class="payment-inner">
+                                <ul class="list-group" style="margin-bottom:0px;">
+                                    <li class="list-group-item clearfix">
+                                        <span class="pull-right cart-product-price">$<?php echo $data->totalPrice ?></span>
+                                        Product
+                                    </li>
+                                    <li class="list-group-item clearfix">
+                                        <span class="pull-right cart-vat">$<?php echo $data->totalPrice * 0.1 ?></span>
+                                        VAT
+                                    </li>
+                                    <li class="list-group-item clearfix">
+                                        <b>SUB TOTAL</b>
+                                        <span class="pull-right cart-total-price"><b>$<?php echo $data->totalPrice * 1.1 ?></b></span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="panel-footer">
+                            <a href="/cart/checkout">
+                                <button type="button" class="btn btn-success btn-block">Proceed to checkout</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--container-->
+
+</div>

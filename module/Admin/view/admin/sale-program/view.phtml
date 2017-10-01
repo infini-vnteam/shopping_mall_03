@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="col-md-8">
+        <h2>
+            Sale Programs: <?php echo $saleProgram->getName() ?>
+        </h2>
+    </div>
+    <div class="col-md-2">
+        <span class="now color-green"><?php echo $saleProgram->getStatusInWord($saleProgram->getStatus()) ?></span>
+        <?php if ($saleProgram->getStatus() != $saleProgram->getCurrentStatus()) { ?>
+            <span><i class="fa fa-hand-o-right"></i></span>
+            <a href="<?= $this->url('sale_programs',
+                ['action' => 'setStatus', 'id' => $saleProgram->getId()]) ?>">
+                <button class="now">
+                    <?php echo $saleProgram->getStatusInWord($saleProgram->getCurrentStatus()) ?>
+                </button>
+            </a>
+        <?php } ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2">
+
+    </div>
+    <div class="col-sm-8">
+        <?php include_once '_timeline.phtml';?>
+    </div>
+</div>
+
+<br>
+<div class="box">
+    <div class="box-header">
+        <h2 clasa="box-title">Products in Sale Program</h2>
+    </div>
+    <div class="box-body">
+        <?php include_once '_product-in-sale.phtml';?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="box">
+            <div class="box-header">
+                <h2>Add Product to Sale Programs</h2>
+            </div>
+            <div class="box-body">
+                <?php include_once '_product-table.phtml';?>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="box">
+            <div class="box-header">
+                <h2>Added Products List</h2>
+            </div>
+            <div class="box-body">
+                <form action="<?= $this->url('sale_programs', ['action' => 'addproduct',
+                   'id' => $saleProgram->getId()]) ?>" method="POST">
+                    <div id="sale-product-box" class="well" style="min-height: 200px"></div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-info fade" id="modal-info" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Enter Sale's Value</h4>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" type="text" id="sale" >
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-ok btn-outline" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>

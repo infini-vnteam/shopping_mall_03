@@ -1,0 +1,127 @@
+<?php
+function in_list($categoryId, $listCategory)
+{
+    foreach ($listCategory as $category) {
+        if ($categoryId == $category->getId()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+?>
+
+<div class="col-sm-3">
+    <div class="card">
+        <div class="panel-body">
+            <h5>Category</h5>
+            <nav class="nav-sidebar">
+                <ul class="nav tabs">
+                    <?php foreach ($mainCategories as $mainCategory) : ?>
+                        <?php $mainCategoryId = $mainCategory->getId(); ?>
+                        <?php $listSubCategory = $arrCateTree[$mainCategoryId] ?>
+
+                        <?php if (in_list($category->getId(), $listSubCategory)
+                            || $mainCategoryId == $category->getId()
+                        ) { ?>
+                            <li class="active">
+                                <a href="/category/view/<?php echo $mainCategoryId ?>">
+                                    <?php echo $mainCategory->getName(); ?>
+                                </a>
+                                <ul class="nav sub-nav">
+                                    <?php foreach ($listSubCategory as $subCategory): ?>
+                                        <?php if ($subCategory->getId() == $category->getId()) { ?>
+                                            <li class="active">
+                                                <a href="/category/view/<?php echo $subCategory->getId(); ?>">
+                                                    <?php echo $subCategory->getName(); ?>
+                                                </a>
+                                            </li>
+                                        <?php } else { ?>
+                                            <li>
+                                                <a href="/category/view/<?php echo $subCategory->getId(); ?>">
+                                                    <?php echo $subCategory->getName(); ?>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </li>
+                        <?php } else { ?>
+                            <li>
+                                <a href="/category/view/<?php echo $mainCategoryId ?>">
+                                    <?php echo $mainCategory->getName(); ?>
+                                </a>
+                            </li>
+                        <?php } ?>
+                    <?php endforeach; ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="card mt15">
+
+        <div class="panel-body">
+            <h5>Price</h5>
+            <div>
+                <form class="price row clearfix" method="post" action="#">
+                    <div class="col-xs-4"
+                         :class="[errors.has('price1') ? 'has-error' : '']">
+                        <input type="text"
+                               v-model="filter.price_gte"
+                               v-validate="'numeric|min_value:0'"
+                               name="price1"
+                               class="form-control">
+                    </div>
+                    <div class="pull-left text-center">
+                        <span class="vcenter">to</span>
+                    </div>
+                    <div class="col-xs-4"
+                         :class="[errors.has('price2') || !truePriceLte ? 'has-error' : '']">
+                        <input type="text"
+                               v-model="filter.price_lte"
+                               v-validate="'numeric|min_value:0'"
+                               name="price2"
+                               class="form-control">
+                    </div>
+                    <div class="col-xs-2">
+                        <input type="submit"
+                               value="Go"
+                               class="btn btn-primary"
+                               @click.prevent="changeFilter">
+                    </div>
+                </form>
+            </div>
+
+            <hr>
+
+            <h5>Filter by color</h5>
+            <div class="swatch">
+                <button class="btn btn-lg btn-color"
+                        :class="{active: color == filter.color}"
+                        v-for="color in colors"
+                        :key="color"
+                        :style="{'background-color': color}"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        :title="color"
+                        @click="selectColor(color)">
+                </button>
+                <button class="btn btn-default btn-color"
+                        :class="{active: 'other' == filter.color}"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        title="OTHERS"
+                        @click="selectColor('other')">
+                    OTHERS
+                </button>
+            </div>
+
+            <hr>
+
+            <button class="btn btn-warning btn-group-justified pull-right"
+                    @click="clearFilter">Clear
+            </button>
+        </div>
+    </div>
+</div>

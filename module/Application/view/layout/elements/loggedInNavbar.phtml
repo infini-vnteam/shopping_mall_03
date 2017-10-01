@@ -1,0 +1,91 @@
+<ul id="hlink" class="nav navbar-nav navbar-right hidden-xs hidden-sm">
+    <?php if ($user["id"] == 1) { ?>
+        <li><a href="/admin">Admin</a></li>
+    <?php }; ?>
+    <li><a href="/">Home</a></li>
+    <li>
+        <a href="/order">
+            My orders
+        </a>
+    </li>
+    <li class="cart_li text-center">
+        <div id="notification">
+            <md-menu md-size="7" md-direction="bottom left" :md-offset-x="0" md-offset-y="70">
+                <md-button class="md-icon-button"
+                           md-menu-trigger>
+                    <md-icon class="md-size-1x"
+                             v-show="!has_new_notice">notifications_none
+                    </md-icon>
+                    <md-icon class="md-size-1x"
+                             v-show="has_new_notice">notifications
+                    </md-icon>
+                </md-button>
+
+                <md-menu-content class="notification-panel">
+                    <div class="panel">
+                        <div class="panel-heading">Notification</div>
+                        <div v-for="(noti, index) in show_notice"
+                             :key="index">
+                            <md-divider></md-divider>
+                            <div class="panel-body">
+                                <div v-html="noti"></div>
+                            </div>
+                        </div>
+                        <md-divider></md-divider>
+                        <div class="panel-heading">
+                            <md-button class="btn-group-justified"
+                                       @click="seeMoreNotice">See more notify...
+                            </md-button>
+                        </div>
+                    </div
+                </md-menu-content>
+            </md-menu>
+        </div>
+    </li>
+    <li class="cart_li text-center profile_user">
+        <button class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" style="display:block;">
+            <?php echo $user["name"] ?>
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" style="display:none" />
+    </li>
+</ul>
+
+<!--Dropdown user menu-->
+<ul class="dropdown-menu profile_dd" style="min-width:250px !important; padding: 10px;">
+
+    <li><a href="/user/view" style="padding:5px;border-left:none;">View profile</a></li>
+    <li role="separator" class="divider"></li>
+    <!--                        <li><a href="#" style="padding:5px;border-left:none;"><span-->
+    <!--                                        class="glyphicon glyphicon-envelope"></span>&nbsp; Conversations</a></li>-->
+    <li role="separator" class="divider"></li>
+    <li><a href="/logout" style="padding:5px;border-left:none;">Sign out</a></li>
+</ul>
+</li>
+
+<li class="cart_li text-center">
+    <a href="/cart"><i class="fa fa-shopping-cart fa-2x"></i>
+        <span class="cart-logo"></span>
+    </a>
+</li>
+</ul>
+
+<!--Menu for mobile-->
+<ul id="hlink" class="nav navbar-nav navbar-right hidden-lg hidden-md">
+    <li><a href="/">Home</a></li>
+    <li><a href="/order">My orders</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false">
+            <?php echo $user["name"] ?>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="/user/view">View Profile</a></li>
+            <li><a href="/logout">Sign out</a></li>
+
+        </ul>
+    </li>
+    <li><a href="/cart">Cart</a></li>
+
+</ul>

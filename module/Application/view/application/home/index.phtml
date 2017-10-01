@@ -1,0 +1,136 @@
+<div id="home">
+    <div class="container-fluid">
+        <div class="home-content">
+            <?php include_once '_sale.phtml' ?>
+
+            <h2 class="home-content-title recently_viewed">Trending on Infini Shop</h2>
+            <div class="clearfix">
+                <?php foreach ($bestSellProducts as $bestSellProduct) : ?>
+                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                        <div class="card clearfix">
+                            <?php if ($bestSellProduct->getCurrentSale() > 0) { ?>
+                                <div class="badge badge-sale">
+                                    Sale
+                                    <md-tooltip><?php echo $bestSellProduct->getCurrentSale() ?>%</md-tooltip>
+                                </div>
+                            <?php }; ?>
+                            <md-layout md-row md-align="right"
+                                       class="badge badge-transparent">
+                                <?php foreach ($bestSellProduct->getColorsInWord() as $c) { ?>
+                                    <div style="color: <?php echo $c ?>">
+                                        <md-icon>brightness_1</md-icon>
+                                        <md-tooltip><?php echo $c ?></md-tooltip>
+                                    </div>
+                                <?php } ?>
+                            </md-layout>
+
+                            <img class="card-img-top img-responsive product"
+                                 src="<?= $this->basePath($bestSellProduct->getImage()) ?>"
+                                 onclick="location.href = '/product/view/<?php echo $bestSellProduct->getId(); ?>';">
+                            <div class="card-block sm card-block-new product"
+                                 onclick="location.href = '/product/view/<?php echo $bestSellProduct->getId(); ?>';">
+                                <p class="card-title"><?= $bestSellProduct->getName() ?></p>
+                                <div class="clearfix">
+                                <span class="card-shop-name pull-left product">
+                                    <a href="/category/view/<?php echo $bestSellProduct->getCategory()->getId(); ?>">
+                                        <?php echo $bestSellProduct->getCategory()->getName(); ?>
+                                    </a>
+                                </span>
+                                    <span class="card-price pull-right">$<?= $bestSellProduct->getCurrentPrice() ?></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+
+            <div>
+                <h2 class="home-content-title">Sale</h2>
+                <div class="clearfix">
+                    <?php foreach ($bestSaleProducts as $product) : ?>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <div class="card">
+                                <?php if ($product->getCurrentSale() > 0) { ?>
+                                    <div class="badge badge-sale">
+                                        Sale
+                                        <md-tooltip><?php echo $product->getCurrentSale() ?>%</md-tooltip>
+                                    </div>
+                                <?php }; ?>
+                                <md-layout md-row md-align="right"
+                                           class="badge badge-transparent">
+                                    <?php foreach ($product->getColorsInWord() as $c) { ?>
+                                        <div style="color: <?php echo $c ?>">
+                                            <md-icon>brightness_1</md-icon>
+                                            <md-tooltip><?php echo $c ?></md-tooltip>
+                                        </div>
+                                    <?php } ?>
+                                </md-layout>
+                                <img class="card-img-top img-responsive product"
+                                     src="<?= $this->basePath($product->getImage()) ?>"
+                                     onclick="location.href='/product/view/<?php echo $product->getId(); ?>';">
+                                <div class="card-block sm card-block-new product"
+                                     onclick="location.href = '/product/view/<?php echo $product->getId(); ?>';">
+                                    <p class="card-title"><?= $product->getName(); ?></p>
+                                    <div class="clearfix">
+                                <span class="card-shop-name pull-left">
+                                    <a href="/category/view/<?php echo $product->getCategory()->getId(); ?>">
+                                        <?php echo $product->getCategory()->getName(); ?>
+                                    </a>
+                                </span>
+                                        <span class="card-price pull-right">$<?= $product->getCurrentPrice() ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="home-content-title">New on Infini Shop</h2>
+                <div class="clearfix">
+                    <?php foreach ($newProducts as $product) : ?>
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                            <div class="card">
+                                <?php if ($product->getCurrentSale() > 0) { ?>
+                                    <div class="badge badge-sale">
+                                        Sale
+                                        <md-tooltip><?php echo $product->getCurrentSale() ?>%</md-tooltip>
+                                    </div>
+                                <?php }; ?>
+                                <md-layout md-row md-align="right"
+                                           class="badge badge-transparent">
+                                    <?php foreach ($product->getColorsInWord() as $c) { ?>
+                                        <div style="color: <?php echo $c ?>">
+                                            <md-icon>brightness_1</md-icon>
+                                            <md-tooltip><?php echo $c ?></md-tooltip>
+                                        </div>
+                                    <?php } ?>
+                                </md-layout>
+
+                                <img class="card-img-top img-responsive product"
+                                     src="<?= $this->basePath($product->getImage()) ?>"
+                                     onclick="location.href = '/product/view/<?php echo $product->getId(); ?>';">
+                                <div class="card-block sm card-block-new product"
+                                     onclick="location.href = '/product/view/<?php echo $product->getId(); ?>';">
+                                    <p class="card-title"><?= $product->getName(); ?></p>
+                                    <div class="clearfix">
+                                <span class="card-shop-name pull-left">
+                                    <a href="/category/view/<?php echo $product->getCategory()->getId(); ?>">
+                                        <?php echo $product->getCategory()->getName(); ?>
+                                    </a>
+                                </span>
+                                        <span class="card-price pull-right">$<?= $product->getCurrentPrice() ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/app/js/home.js"></script>

@@ -1,0 +1,18 @@
+<div id="product-details">
+    <md-tabs md-fixed
+             class="md-transparent"
+             @change="tabChange">
+        <md-tab id="detail" md-label="Item Details">
+            <?php include_once 'details/_item_details.phtml' ?>
+        </md-tab>
+
+        <md-tab id="review" md-label="Reviews"
+                :md-active="is_write_review">
+            <?php include_once 'details/_review.phtml' ?>
+        </md-tab>
+
+        <md-tab id="comment" md-label="Questions">
+            <?php include_once 'details/_comment.phtml' ?>
+        </md-tab>
+    </md-tabs>
+</div>

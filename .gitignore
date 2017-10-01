@@ -1,0 +1,45 @@
+# Created by .ignore support plugin (hsz.mobi)
+### ZendFramework template
+# Composer files
+composer.phar
+vendor/
+.vagrant/
+.idea/
+phpunit.xml
+
+# Local configs
+config/autoload/*.local.php
+config/development.config.php
+
+# Binary gettext files
+*.mo
+
+# Data
+data/logs/
+data/cache/*
+data/sqlite/
+data/sessions/
+data/tmp/
+temp/
+!data/cache/.gitkeep
+
+#Doctrine 2
+data/DoctrineORMModule/Proxy/
+data/DoctrineORMModule/cache/
+
+
+# Legacy ZF1
+demos/
+extras/documentation
+
+# Bower
+public/assets
+
+autorun.rb
+#image
+public/img/products
+public/img/captcha/*.png
+
+composer.lock
+
+node_modules/

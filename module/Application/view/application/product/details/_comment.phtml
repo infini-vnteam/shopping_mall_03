@@ -1,0 +1,65 @@
+<h5>Can we help you?</h5>
+<md-input-container md-inline
+                    v-if="login">
+    <md-input placeholder="Your question"
+              v-model="comment_content"
+              @keyup.enter.native="postComment()">
+    </md-input>
+</md-input-container>
+
+<div v-if="!login">
+    <h5>Please <a :href="'/login?redirectUrl=/product/view/' + product.id">login</a> to ask question</h5>
+</div>
+
+<md-list>
+    <md-list-item v-for="comment in product.comment.items"
+                  :key="comment.id">
+        <span>
+            <span class="user_name">
+                {{ comment.user_name }}
+            </span>
+            <span class="content"> {{ comment.content }}</span>
+        </span>
+        <md-list-expand>
+            <md-list>
+                <md-list-item v-for="rep in comment.replies"
+                              :key="rep.id"
+                              class="md-inset"
+                              v-if="comment.replies">
+                    <div class="md-list-text-container">
+                        <span>
+                            <span class="user_name">
+                                {{ rep.user_name }}
+                            </span>
+                            <span class="content"> {{ rep.content }}</span>
+                        </span>
+                    </div>
+                    <md-layout md-align="end">
+                        <md-button class="md-icon-button"
+                                   @click="deleteComment(rep.id, comment.id)"
+                                   v-if="rep.user_id == user_id">
+                            <md-icon>close</md-icon>
+                        </md-button>
+                    </md-layout>
+                </md-list-item>
+                <md-list-item class="md-inset"
+                              v-if="login">
+                    <md-input-container md-inline>
+                        <md-input placeholder="Reply"
+                                  v-model="replies[comment.id]"
+                                  @keyup.enter.native="postReply(comment.id)">
+                        </md-input>
+                    </md-input-container>
+                </md-list-item>
+            </md-list>
+        </md-list-expand>
+
+        <md-layout md-align="end">
+            <md-button class="md-icon-button"
+                       @click="deleteComment(comment.id)"
+                       v-if="comment.user_id == user_id">
+                <md-icon>close</md-icon>
+            </md-button>
+        </md-layout>
+    </md-list-item>
+</md-list>

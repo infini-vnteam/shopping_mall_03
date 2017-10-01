@@ -1,0 +1,62 @@
+<?php
+    function status_class($id) {
+        if($id == 1) return "bg-red";
+        if($id == 2) return "bg-blue";
+        if($id == 3) return "bg-yellow";
+    }
+
+    function status_content($id) {
+        if($id == 1) return "pending";
+        if($id == 2) return "shipping";
+        if($id == 3) return "completed";
+    }
+    function status_icon($id) {
+        if($id == 1) return "fa fa-truck";
+        if($id == 2) return "fa fa-check-square-o";
+    }
+
+    function status_title($id) {
+        if($id == 1) return "accept shipping";
+        if($id == 2) return "shipped successfully";
+    }
+?>
+<div class="box-body">
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th style="width: 15px">#</th>
+                <th>Items</th>
+                <th>Cost</th>
+                <th>Status</th>
+                <th>Date Created</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+       
+        <?php foreach($orders as $order): ?>
+            <tr>
+                <td><?php echo ++$i ?></td>
+                <td><?php echo $order->getNumberOfItems(); ?></td>
+                <td><?php echo $order->getCost(); ?></td>
+                <td>
+                    <small class="label <?php echo status_class($order->getStatus())?>">
+                        <?php echo status_content($order->getStatus()); ?>
+                    </small>
+                </td>
+                <td><?php echo $order->getDateCreated(); ?></td>
+                <td>
+                    <a href="<?php echo $this->url('orders',
+                        ['action' => 'view', 'id' => $order->getId()])?>", title="Show details">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </a>
+                    <a href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
+                        title="<?php echo status_title($order->getStatus())?>">
+                        <i class="<?php echo status_icon($order->getStatus())?>"></i>
+                    </a>
+                </td>
+            </tr>
+        <?php endforeach; ?>    
+        </tbody>
+    </table>
+</div>

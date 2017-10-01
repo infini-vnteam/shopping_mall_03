@@ -1,0 +1,161 @@
+<?= $this->doctype() ?>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <?= $this->headTitle('Shopping Mall')->setSeparator(' - ')->setAutoEscape(false) ?>
+
+    <?= $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
+
+    <!-- Le styles -->
+    <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+        ->prependStylesheet($this->basePath('app/css/material-design-iconic-font.min.css'))
+        ->prependStylesheet($this->basePath('app/css/material-design-iconic-font.css'))
+        ->prependStylesheet($this->basePath('app/css/main.css'))
+        ->prependStylesheet($this->basePath('app/css/integrated.css'))
+        ->prependStylesheet($this->basePath('app/css/style.css'))
+        ->prependStylesheet($this->basePath('css/vue-material.css'))
+        ->prependStylesheet($this->basePath('app/css/rateit.css'))
+        ->prependStylesheet($this->basePath('app/css/font-awesome.css'))
+        ->prependStylesheet($this->basePath('app/css/overwrite.css'))
+        ->prependStylesheet($this->basePath('app/css/animate.css'))
+        ->prependStylesheet($this->basePath('app/css/bootsnav.css'))
+        ->prependStylesheet($this->basePath('app/css/bootstrap.min.css'))
+    ?>
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Scripts -->
+    <?= $this->headScript()
+        //->prependFile($this->basePath('pages/home.js'))
+        //->prependFile('http://shopping.app:8056/socket.io/socket.io.js')
+        ->prependFile($this->basePath('js/vue-scroller.js'))
+        ->prependFile($this->basePath('app/js/speech.js'))
+        ->prependFile($this->basePath('app/js/search-result.js'))
+        ->prependFile($this->basePath('app/js/notification.js'))
+        ->prependFile($this->basePath('app/js/search.js'))
+        ->prependFile($this->basePath('app/js/cart.js'))
+        ->prependFile($this->basePath('app/js/me.js'))
+        ->prependFile($this->basePath('app/js/snackbar.js'))
+        ->prependFile($this->basePath('js/address.js'))
+        ->prependFile($this->basePath('app/js/main.js'))
+        ->prependFile($this->basePath('js/vee-validate.js'))
+        ->prependFile($this->basePath('js/vue-material.js'))
+        ->prependFile($this->basePath('assets/axios/dist/axios.js'))
+        ->prependFile($this->basePath('assets/vue/dist/vue.js'))
+        ->prependFile($this->basePath('app/js/bootsnav.js'))
+        ->prependFile($this->basePath('app/js/jquery.easing.1.3.js'))
+        ->prependFile($this->basePath('app/js/bootstrap.min.js'))
+        ->prependFile($this->basePath('app/js/jquery.js'))
+    ?>
+</head>
+
+<body>
+<div class="index-outer" id="app">
+    <header>
+        <?php include_once 'elements/navbar.phtml' ?>
+        <?php include_once 'elements/navbarMenu.phtml' ?>
+    </header>
+
+    <div class="search-result" id="search-result"
+         v-if="show_result">
+        <?php include_once 'elements/search_result.phtml' ?>
+    </div>
+
+    <?= $this->content ?>
+
+    <?php include_once 'elements/footer.phtml' ?>
+
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+    </div>
+
+    <md-snackbar :md-position="vertical + ' ' + horizontal"
+                 ref="snackbar"
+                 :md-duration="duration"
+                 id="snackbar">
+        <span><b>{{notifyMessage}}.</b></span>
+        <md-button @click="notifyActionAdapter">{{ notifyAction }}</md-button>
+    </md-snackbar>
+
+    <div id="speech2text"
+         class="speech-outer">
+        <md-layout md-gutter
+                   md-row
+                   md-vertical-align="center">
+            <md-layout>
+                <md-speed-dial md-open="hover" class="md-fab-bottom-left">
+                    <md-button class="md-fab record-button md-raised md-dense"
+                               :class="[is_record ? 'md-warn' : '']"
+                               @click.native="record"
+                               md-fab-trigger>
+                    </md-button>
+
+                    <md-button class="md-fab md-primary md-mini md-clean">
+                        <md-icon>settings</md-icon>
+                    </md-button>
+                </md-speed-dial>
+            </md-layout>
+            <md-layout>
+                <div class="result"
+                     v-show="show_result">
+                    <div class="content">
+                        {{ label }} {{ say }}
+                    </div>
+                </div>
+            </md-layout>
+        </md-layout>
+    </div>
+
+    <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="material-icons">keyboard_arrow_up</i></a>
+    </div>
+
+
+    <!--    <div id="chatbox" v-if="isLogedIn">-->
+    <!--        <div class="chat_window" style="right: 10px">-->
+    <!--            <div class="top_menu" >-->
+    <!--                <div class="buttons">-->
+    <!--                    <div class="button close" @click="closeChatbox()"></div>-->
+    <!--                    <!--                    <div class="button minimize"></div>-->
+    <!--                    <div class="button maximize" @click="openChatbox()"></div>-->
+    <!--                </div>-->
+    <!--                <div class="title">{{ current_chatting_user }}</div>-->
+    <!--            </div>-->
+    <!--            <div v-if="!isChatBoxClosed">-->
+    <!--                <ul id="messages_list" class="messages" v-chat-scroll>-->
+    <!--                    <div v-for="message in messages" >-->
+    <!--                        <li class="message left appeared" v-if="message.sender_id != user.id" >-->
+    <!--                            <div class="avatar"></div>-->
+    <!--                            <div class="text_wrapper">-->
+    <!--                                <div class="text">{{ message.content }}</div>-->
+    <!--                            </div>-->
+    <!--                        </li>-->
+    <!--                        <li class="message right appeared" v-else>-->
+    <!--                            <div class="avatar"></div>-->
+    <!--                            <div class="text_wrapper">-->
+    <!--                                <div class="text">{{ message.content }}</div>-->
+    <!--                            </div>-->
+    <!--                        </li>-->
+    <!--                    </div>-->
+    <!--                </ul>-->
+    <!--                <div class="bottom_wrapper clearfix">-->
+    <!--                    <div class="message_input_wrapper">-->
+    <!--                        <input v-on:keyup.13="sendMessage()" class="message_input" v-model="text" placeholder="Type your message here..."/></div>-->
+    <!--                    <div class="send_message" @click="sendMessage()" >-->
+    <!--                        <div class="icon"></div>-->
+    <!--                        <div class="text">Send</div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!---->
+    <!--    </div>-->
+    <?php echo $this->inlineScript() ?>
+
+</div>
+</body>
+</html>

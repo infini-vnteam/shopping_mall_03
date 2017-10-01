@@ -1,0 +1,47 @@
+<div class="box box-info">
+    <div class="box-header">
+        <h2 class="box-title">User Chart</h2>
+        <select class="form-control select-box" id="user-select">
+        	<option value="1">Current Month</option>
+        	<option value="2">Current year</option>
+        </select>
+    </div>
+    <div class="box-body">
+        <div id="user-chart" style="width: 478px;height: 250px" width="478" height="250"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: 'POST',
+            url: '/admin/userchart',
+            data: {
+                'type' : 1
+            },
+            success: function(data) {
+                var data = JSON.parse(data);
+                Highcharts.chart('user-chart', data);                         
+            }
+        });
+      
+        function load_user_chart(){
+            var type = $('#user-select option:selected').val();
+            $.ajax({
+                type: 'POST',
+                url: '/admin/userchart',
+                data: {
+                    'type' : type
+                },
+                success: function(data) {
+                  var data = JSON.parse(data);
+                  Highcharts.chart('user-chart', data);                                
+                }
+            })
+        }
+
+        $('#user-select').on("change", function(){
+            load_user_chart();
+        });
+    });
+
+</script>

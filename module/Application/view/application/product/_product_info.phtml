@@ -1,0 +1,96 @@
+<div id="listing-page-cart">
+    <div class="inner">
+        <h1>{{product.name}}</h1>
+
+        <md-layout md-vertical-align="center" md-gutter>
+            <md-layout md-vertical-align="center">
+                <md-rating-bar v-model="rate_avg"
+                               class="md-primary"
+                               disabled>
+                </md-rating-bar>
+                ({{ product.rate_count }})
+            </md-layout>
+            <md-layout>
+                <a href="#product-details"
+                   class="md-primary"
+                   @click="writeReview">
+                    <md-icon>edit</md-icon>
+                    Write a review
+                </a>
+            </md-layout>
+        </md-layout>
+
+        <div class="clearfix row">
+            <div class="product_details">
+                <md-layout>
+                    <div id="listing-price"
+                         :class="[product.current_sale > 0 ? 'sale' : '']">
+                        ${{product.current_price}}
+                    </div>
+                    <div style="flex: 0.05"></div>
+                    <div id="listing-price"
+                         class="nosale"
+                         v-if="product.current_sale > 0">
+                        <del>${{ product.price }}</del>
+                    </div>
+                </md-layout>
+
+                <div id="item-stock">
+                    <div class="item-stock">
+                        {{product.intro}}
+                    </div>
+
+                    <div id="item-stock">
+                        <label class="property-513">Color: {{selected_color}}</label>
+                        <md-button-toggle md-single>
+                            <md-button v-for="color in product.colors"
+                                       :key="color"
+                                       class="color-button margin-button md-raised md-fab md-mini"
+                                       :class="{active: color == selected_color}"
+                                       :style="{background: color}"
+                                       @click="selectColor(color)">
+                                <md-tooltip md-direction="top">{{color}}</md-tooltip>
+                            </md-button>
+                        </md-button-toggle>
+                    </div>
+
+                    <div id="item-stock">
+                        <label class="property-513">Size: {{selected_size}}</label>
+                        <md-button-toggle md-single class="md-primary">
+                            <md-button v-for="size in current_list_size"
+                                       :key="size"
+                                       @click.native="selectSize(size)"
+                                       class="md-icon-button md-raised margin-button"
+                                       :class="{'md-toggle': size == selected_size}">
+                                {{size}}
+                                <md-tooltip md-direction="top">{{size}}</md-tooltip>
+                            </md-button>
+                        </md-button-toggle>
+                    </div>
+
+                    <div id="item-stock">
+                        <md-input-container :class="[errors.has('quantity') ? 'md-input-invalid' : '']">
+                            <label>Quantity</label>
+                            <md-input type="number"
+                                      name="quantity"
+                                      v-validate="'required|between:1,100'"
+                                      :class="{'is-danger': errors.has('quantity')}"
+                                      v-model.number="quantity"></md-input>
+
+                            <span class="md-error"
+                                  v-show="errors.has('quantity')">{{errors.first('quantity')}}</span>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="cart_button" style="padding-top:10px;">
+        <button class="btn btn-block"
+                :class="[current_list_size.length == 0 ? 'btn-warning disabled' : 'btn-success']"
+                @click="addToCart">
+            {{ current_list_size.length == 0 ? 'Out of stock' : 'Add to cart' }}
+        </button>
+    </div>
+</div>

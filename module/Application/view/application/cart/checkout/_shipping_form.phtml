@@ -1,0 +1,118 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-sm-6">
+                <p>Choose a shipping address</p>
+            </div>
+            <div class="col-sm-6 text-right"
+                 v-show="!login">
+                <a href="/login?redirectUrl=/cart/checkout">LOGIN</a>
+                or
+                <a href="/register?redirectUrl=/cart/checkout">REGISTER</a>
+                for speedy checkout
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="user-details">
+            <div class="form-group">
+                <md-input-container :class="[errors.has('full name') ? 'md-input-invalid' : '']">
+                    <label>Full name</label>
+                    <md-input name="full name"
+                              v-validate="'required'"
+                              v-model="ship_add.full_name">
+                    </md-input>
+                    <span class="md-error"
+                          v-show="errors.has('full name')">
+                        {{ errors.first('full name') }}
+                    </span>
+                </md-input-container>
+            </div>
+        </div>
+        <div class="user-details">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6">
+                    <div class="form-group">
+                        <md-input-container
+                                :class="[errors.has('phone number') || !is_phone_number ? 'md-input-invalid' : '']">
+                            <label>Phone Number</label>
+                            <md-input name="phone number"
+                                      v-validate="'required|numeric'"
+                                      v-model="ship_add.phone_number">
+                            </md-input>
+                            <span class="md-error"
+                                  v-show="errors.has('phone number')">
+                                {{ errors.first('phone number') }}
+                            </span>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="form-group">
+                        <md-input-container :class="[errors.has('email') ? 'md-input-invalid' : '']">
+                            <label>Email</label>
+                            <md-input name="email"
+                                      v-validate="'required|email'"
+                                      v-model="ship_add.email">
+                            </md-input>
+                            <span class="md-error"
+                                  v-show="errors.has('email')">
+                                {{ errors.first('email') }}
+                            </span>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="address">
+            <div class="user-details">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <md-input-container>
+                                <label for="country">Province</label>
+                                <md-select name="state"
+                                           v-model="selected_state">
+                                    <md-option v-for="state in provinces"
+                                               :key="state"
+                                               :value="state"
+                                               @selected="selectState">
+                                        {{ state }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="form-group">
+                            <md-input-container>
+                                <label for="country">District</label>
+                                <md-select name="dist"
+                                           v-model="selected_dist">
+                                    <md-option v-for="dist in districts"
+                                               :key="dist"
+                                               :value="dist">
+                                        {{ dist }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <md-input-container :class="[errors.has('address') ? 'md-input-invalid' : '']">
+                        <label>Address</label>
+                        <md-input name="address"
+                                  v-validate="'required'"
+                                  v-model="ship_add.address">
+                        </md-input>
+                        <span class="md-error"
+                              v-show="errors.has('address')">
+                            {{ errors.first('address') }}
+                        </span>
+                    </md-input-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

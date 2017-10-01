@@ -1,0 +1,149 @@
+<div class="order-outer" id="order">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="list-order"
+                 v-if="orders.length > 0">
+
+                <div class="order-item"
+                     v-for="(order, index) in orders"
+                     :key="index">
+                    <md-card>
+                        <md-card-header>
+                            <div class="md-title">#{{ order.id }}</div>
+                        </md-card-header>
+
+                        <md-card-content>
+                            <div class="p-data clearfix">
+										<span class="pull-left">
+											Created at {{ order.created_at }}
+										</span>
+                                <span class="pull-right">
+											<b>Total: ${{ order.total_price }}</b>
+										</span>
+                            </div>
+
+                            <div class="md-stepper md-theme-default">
+                                <nav class="md-steps-navigation">
+                                    <div class="md-steps-navigation-container">
+                                        <div class="md-step-header md-active">
+                                            <div class="md-step-icons"><!---->
+                                                <div class="md-step-number">
+                                        <span>
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        </span>
+                                                </div>
+                                            </div>
+                                            <div class="md-step-titles">
+                                                <div class="md-step-title">Order Received</div> <!---->
+                                            </div> <!---->
+                                        </div>
+                                        <hr class="md-divider">
+                                        <div class="md-step-header"
+                                             :class="[order.status > 1 ? 'md-active' : '']">
+                                            <div class="md-step-icons"><!---->
+                                                <div class="md-step-number">
+                                                        <span>
+                                                            <i v-if="order.status > 1"
+                                                               class="fa fa-check"
+                                                               aria-hidden="true"></i>
+                                                           <i v-if="order.status <= 1"
+                                                              class="fa fa-spinner"
+                                                              aria-hidden="true"></i>
+                                                        </span>
+                                                </div>
+                                            </div>
+                                            <div class="md-step-titles">
+                                                <div class="md-step-title">On Shipping</div> <!---->
+                                            </div> <!----></div>
+                                        <hr class="md-divider">
+                                        <div class="md-step-header"
+                                             :class="[order.status > 2 ? 'md-active' : '']">
+                                            <div class="md-step-icons"><!---->
+                                                <div class="md-step-number">
+                                                        <span>
+                                                            <i v-if="order.status > 2"
+                                                               class="fa fa-check"
+                                                               aria-hidden="true"></i>
+                                                            <i v-if="order.status <= 2"
+                                                               class="fa fa-spinner" aria-hidden="true"></i>
+                                                        </span>
+                                                </div>
+                                            </div>
+                                            <div class="md-step-titles">
+                                                <div class="md-step-title">Order Delivered</div> <!---->
+                                            </div> <!---->
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+
+                            <?php include_once 'track/_items_table.phtml' ?>
+
+                            <md-card-expand>
+                                <md-card-actions>
+                                    Other information
+                                    <md-button class="md-icon-button"
+                                               md-expand-trigger>
+                                        <md-icon>
+                                            <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                        </md-icon>
+                                    </md-button>
+                                </md-card-actions>
+
+                                <md-card-content>
+                                    <h5>Shipping address</h5>
+                                    <md-table>
+                                        <md-table-body>
+                                            <md-table-row>
+                                                <md-table-cell>
+                                                    Name
+                                                </md-table-cell>
+                                                <md-table-cell>
+                                                    {{ order.customer_detail.full_name }}
+                                                </md-table-cell>
+                                            </md-table-row>
+                                            <md-table-row>
+                                                <md-table-cell>
+                                                    Email
+                                                </md-table-cell>
+                                                <md-table-cell>
+                                                    {{ order.customer_detail.email }}
+                                                </md-table-cell>
+                                            </md-table-row>
+                                            <md-table-row>
+                                                <md-table-cell>
+                                                    Phone
+                                                </md-table-cell>
+                                                <md-table-cell>
+                                                    {{ order.customer_detail.phone_number }}
+                                                </md-table-cell>
+                                            </md-table-row>
+                                            <md-table-row>
+                                                <md-table-cell>
+                                                    Address
+                                                </md-table-cell>
+                                                <md-table-cell>
+                                                    {{ order.customer_detail.address }}
+                                                </md-table-cell>
+                                            </md-table-row>
+                                        </md-table-body>
+                                    </md-table>
+                                    </md-list>
+                                </md-card-content>
+                            </md-card-expand>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+            <div class="no-data"
+                 v-if="orders.length == 0">
+                <span class="no-data-icon">
+                    <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+                </span>
+                <p>You haven’t made any purchases yet.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/app/js/order.js"></script>
