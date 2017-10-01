@@ -1,15 +1,26 @@
 #shopping_mall_03
 shopping_mall_03 (Training)
 
+##Cấu hình project
+###1. Các package php cần thiết:
+
+###2. Cấu hình Database:
+- Mở thư mục config/autoload
+- Tạo file local.php theo mẫu ở file local.php.dist
+- Tạo file development.local.php theo mẫu ở file development.local.php.dist
+
+###3. Chuyển sang chế độ development
+$ composer development-enable
+
 ##Cấu hình elastic search
 
 ###1. Cài elastic search tại đây
 https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html
 
 ###2. Cài package "elasticsearch/elasticsearch"
-composer update
+$ composer update
 hoặc
-composer require "elasticsearch/elasticsearch"
+$ composer require "elasticsearch/elasticsearch"
 
 ###3. Cấu hình hosts cho elastic search
 Sửa file /config/autoload/local.php

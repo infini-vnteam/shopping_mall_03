@@ -17,13 +17,13 @@ class MailManager
         return 'ok';
     }
 
-    public function sendOrder($order_id) {
+    public function sendOrder($hash, $data) {
         
         $message = new Message();
         $message->addFrom('infinishop.vnteam@gmail.com', 'InfiniShop');
-        $message->addTo('infinishop.vnteam@gmail.com', 'Jane Doe');
+        $message->addTo($data['email'], $data['full_name']);
         $message->setSubject('Thank for buy');
-        $message->setBody('Thankyou for buy my product! There is my order code: ' . $order_id);
+        $message->setBody('Thankyou for buy my product! There is your order code: ' . $hash . '.If you want see your order, please tracking in my site ');
         $this->transport->send($message);
     } 
 }

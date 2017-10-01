@@ -11,23 +11,24 @@
  * credentials from accidentally being committed into version control.
  */
 use Doctrine\DBAL\Driver\PDOPgSql\Driver as PDOPgSqlDriver;
+
 return [
     'doctrine' => [
         'connection' => [
             'orm_default' => [
                 'driverClass' => PDOPgSqlDriver::class,
                 'params' => [
-                    'host'     => '127.0.0.1',
-                    'port'     => '5432',               
-                    'user'     => 'postgres_user',
-                    'password' => '<password>',
-                    'dbname'   => '<database_name',
+                    'host' => '127.0.0.1',
+                    'port' => '5432',
+                    'user' => 'admin',
+                    'password' => '12345678',
+                    'dbname' => 'shopping',
                 ]
-            ],            
-        ],        
+            ],
+        ],
     ],
     'elasticsearch' => [
-        'enable' => true,
+        'enable' => false,
         'hosts' => [
             'localhost', // Domain
         ]

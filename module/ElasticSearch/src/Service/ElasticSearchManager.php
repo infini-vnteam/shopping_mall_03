@@ -6,11 +6,14 @@ class ElasticSearchManager
 {
     private $clientBuilder;
     private $hosts;
+    private $enable; // switch on/off elastic search
 
     public function __construct($clientBuilder, $host)
     {
         $this->clientBuilder = $clientBuilder;
         $this->hosts = $host;
+        $config = new \Zend\Config\Config(include PATH_CONFIG . '/autoload/local.php');
+        $this->enable = $config->elasticsearch->enable;
     }
 
     public function getClient()
@@ -25,9 +28,12 @@ class ElasticSearchManager
             'client' => ['ignore' => [400, 404]],
         ];
 
-        $response = $this->getClient()->indices()->create($params);
-
-        return $response;
+        if ($this->enable) {
+            $response = $this->getClient()->indices()->create($params);
+            return $response;
+        } else {
+            return 'elastic search is disable';
+        }
     }
 
     public function deleteIndex($index)
@@ -37,9 +43,12 @@ class ElasticSearchManager
             'client' => ['ignore' => [400, 404]],
         ];
 
-        $response = $this->getClient()->indices()->delete($params);
-
-        return $response;
+        if ($this->enable) {
+            $response = $this->getClient()->indices()->delete($params);
+            return $response;
+        } else {
+            return 'elastic search is disable';
+        }
     }
 
     public function index($index, $type, $id, $data)
@@ -52,7 +61,11 @@ class ElasticSearchManager
             'client' => ['ignore' => [400, 404]]
         ];
 
-        return $this->getClient()->index($params);
+        if ($this->enable) {
+            return $this->getClient()->index($params);
+        } else {
+            return 'elastic search is disable';
+        }
     }
 
     public function update($index, $type, $id, $data)
@@ -66,7 +79,11 @@ class ElasticSearchManager
             ]
         ];
 
-        return $this->getClient()->update($params);
+        if ($this->enable) {
+            return $this->getClient()->update($params);
+        } else {
+            return 'elastic search is disable';
+        }
     }
 
     public function delete($index, $type, $id)
@@ -78,7 +95,11 @@ class ElasticSearchManager
             'client' => ['ignore' => 404],
         ];
 
-        return $this->getClient()->delete($params);
+        if ($this->enable) {
+            return $this->getClient()->delete($params);
+        } else {
+            return 'elastic search is disable';
+        }
     }
 
     public function get($index, $type, $id)
@@ -89,7 +110,10 @@ class ElasticSearchManager
             'id' => $id,
             'client' => ['ignore' => 404],
         ];
-
-        return $this->getClient()->get($params);
+        if ($this->enable) {
+            return $this->getClient()->get($params);
+        } else {
+            return 'elastic search is disable';
+        }
     }
 }
