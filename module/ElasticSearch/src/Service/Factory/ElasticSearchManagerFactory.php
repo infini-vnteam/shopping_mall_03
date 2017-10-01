@@ -27,7 +27,7 @@ class ElasticSearchManagerFactory implements FactoryInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $config = new \Zend\Config\Config(include PATH_CONFIG_1 . '/autoload/local.php');
+        $config = new \Zend\Config\Config(include PATH_CONFIG . '/autoload/local.php');
         $hosts = $config->elasticsearch->hosts->toArray();
 
         $clientBuilder = Elasticsearch\ClientBuilder::create();
