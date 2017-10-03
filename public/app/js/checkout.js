@@ -17,6 +17,8 @@ $(function () {
 
             success: false,
             order_id: '',
+
+            wating_checkout: false,
         },
         mounted: function () {
             this.fetchShipAddress();
@@ -48,6 +50,7 @@ $(function () {
             //     this.districts = address[this.selected_state];
             // },
             checkout: function () {
+                this.wating_checkout = true;
                 this.ship_add.province = this.selected_state;
                 this.ship_add.dist = this.selected_dist;
 
@@ -67,6 +70,7 @@ $(function () {
                     .then(res => {
                         // show success page
                         if (res.data.status === 'ok') {
+                            this.wating_checkout = false;
                             this.success = true;
                             this.order_id = res.data.order_id;
                         } else {
