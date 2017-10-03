@@ -27,7 +27,7 @@
     ?>
 
     <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link rel="stylesheet" href="https://unpkg.com/vue-material@0.7.5/dist/vue-material.css">
     <!-- Scripts -->
     <?= $this->headScript()
         //->prependFile($this->basePath('pages/home.js'))
@@ -51,6 +51,8 @@
         ->prependFile($this->basePath('app/js/bootstrap.min.js'))
         ->prependFile($this->basePath('app/js/jquery.js'))
     ?>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-material@0.7.5/dist/vue-material.js"></script>
 </head>
 
 <body>
