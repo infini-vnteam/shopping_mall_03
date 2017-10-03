@@ -25,7 +25,8 @@
             <form method="post" target="/cart/checkout">
                 <button type="submit"
                         class="btn btn-success btn-block"
-                        @click.prevent="checkout">
+                        @click.prevent="checkout"
+                        :disabled="wating_checkout">
                     <b>Place Your Order</b>
                 </button>
             </form>

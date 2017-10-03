@@ -99,7 +99,7 @@ class CartController extends AbstractActionController
             $hash = $this->orderManager->encryptByOrderId($order->getId());
 
 
-            $this->mailManager->sendOrder($hash,$data_formated);
+//            $this->mailManager->sendOrder($hash,$data_formated);
 
             $cookie = new \Zend\Http\Header\SetCookie(
                 'Cart',
