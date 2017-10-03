@@ -20,7 +20,7 @@ return [
                 'params' => [
                     'host' => '127.0.0.1',
                     'port' => '5432',
-                    'user' => 'admin',
+                    'user' => 'postgres',
                     'password' => '12345678',
                     'dbname' => 'shopping',
                 ]
@@ -28,7 +28,7 @@ return [
         ],
     ],
     'elasticsearch' => [
-        'enable' => false,
+        'enable' => true,
         'hosts' => [
             'localhost', // Domain
         ]

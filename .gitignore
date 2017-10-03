@@ -37,7 +37,7 @@ extras/documentation
 
 autorun.rb
 #image
-public/img/products
+#public/img/products
 public/img/captcha/*.png
 
 composer.lock
