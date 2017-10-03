@@ -31,10 +31,9 @@ class ElasticSearchManagerFactory implements FactoryInterface
         $hosts = $config->elasticsearch->hosts->toArray();
 
         $clientBuilder = Elasticsearch\ClientBuilder::create();
-        $defaultHandler = Elasticsearch\ClientBuilder::defaultHandler();
 
         if ($requestedName == ElasticSearchManager::class) {
-            return new ElasticSearchManager($clientBuilder, $defaultHandler, $hosts);
+            return new ElasticSearchManager($clientBuilder, $hosts);
         } else {
             return new ProductElasticSearchManager($clientBuilder, $hosts);
         }

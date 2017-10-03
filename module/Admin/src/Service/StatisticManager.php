@@ -24,6 +24,8 @@ class StatisticManager
     {
         if ($type == 1)
             return $this->makeOrderDataChartByMonth();
+        if ($type == 2)
+            return $this->makeOrderDataChartLastMonth();
         else return $this->makeOrderDataChartByYear();
     }
 
@@ -41,6 +43,22 @@ class StatisticManager
 
         return $data;
     }
+
+    private function makeOrderDataChartLastMonth()
+    {
+        $data_week[0] = $this->getOrderQuantityByWeek(1, 1)[0][1];
+        $data_week[1] = $this->getOrderQuantityByWeek(8, 1)[0][1];
+        $data_week[2] = $this->getOrderQuantityByWeek(15, 1)[0][1];
+        $data_week[3] = $this->getOrderQuantityByWeek(22, 1)[0][1];
+
+        $data = $this->getPreConfigChart('orders');
+        $data['subtitle']['text'] = 'Order By Month';
+        $data['xAxis']['categories'] = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+        $data['series'][0]['data'] = $data_week;
+
+        return $data;
+    }
+
 
     private function makeOrderDataChartByYear()
     {
@@ -73,11 +91,12 @@ class StatisticManager
         return $queryBuilder->getQuery()->getResult();
     }
 
-    private function getOrderQuantityByWeek($day)
+    private function getOrderQuantityByWeek($day, $last_month = 0)
     {
         $queryBuilder = $this->entityManager->createQueryBuilder();
-        
-        $currentMonth = date("Y-m");
+        if ($last_month == 0)
+            $currentMonth = date("Y-m");
+        else $currentMonth = date("Y-m", strtotime("first day of previous month"));    
         $currentWeekDay = $currentMonth."-".$day;
         if ($day == 22){
             $currentMonth = date("Y-m")."-01";
@@ -101,6 +120,8 @@ class StatisticManager
     {
         if ($type == 1)
             return $this->makeReviewDataChartByMonth();
+        if ($type == 2)
+            return $this->makeReviewDataChartLastMonth();
         else return $this->makeReviewDataChartByYear();
     }
 
@@ -110,6 +131,21 @@ class StatisticManager
         $data_week[1] = $this->getReviewQuantityByWeek(8)[0][1];
         $data_week[2] = $this->getReviewQuantityByWeek(15)[0][1];
         $data_week[3] = $this->getReviewQuantityByWeek(22)[0][1];
+
+        $data = $this->getPreConfigChart('reviews');
+        $data['subtitle']['text'] = 'Review By Month';
+        $data['xAxis']['categories'] = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+        $data['series'][0]['data'] = $data_week;
+
+        return $data;
+    }
+
+    private function makeReviewDataChartLastMonth()
+    {
+        $data_week[0] = $this->getReviewQuantityByWeek(1, 1)[0][1];
+        $data_week[1] = $this->getReviewQuantityByWeek(8, 1)[0][1];
+        $data_week[2] = $this->getReviewQuantityByWeek(15, 1)[0][1];
+        $data_week[3] = $this->getReviewQuantityByWeek(22, 1)[0][1];
 
         $data = $this->getPreConfigChart('reviews');
         $data['subtitle']['text'] = 'Review By Month';
@@ -151,11 +187,13 @@ class StatisticManager
         return $queryBuilder->getQuery()->getResult();
     }
 
-    private function getReviewQuantityByWeek($day)
+    private function getReviewQuantityByWeek($day, $last_month = 0)
     {
         $queryBuilder = $this->entityManager->createQueryBuilder();
         
-        $currentMonth = date("Y-m");
+        if ($last_month == 0)
+            $currentMonth = date("Y-m");
+        else $currentMonth = date("Y-m", strtotime("first day of previous month")); 
         $currentWeekDay = $currentMonth."-".$day;
         if ($day == 22){
             $currentMonth = date("Y-m")."-01";
@@ -179,6 +217,8 @@ class StatisticManager
     {
         if ($type == 1)
             return $this->makeUserDataChartByMonth();
+        if ($type == 2)
+            return $this->makeUserDataChartLastMonth();
         else return $this->makeUserDataChartByYear();
     }
 
@@ -188,6 +228,21 @@ class StatisticManager
         $data_week[1] = $this->getUserQuantityByWeek(8)[0][1];
         $data_week[2] = $this->getUserQuantityByWeek(15)[0][1];
         $data_week[3] = $this->getUserQuantityByWeek(22)[0][1];
+
+        $data = $this->getPreConfigChart('users');
+        $data['subtitle']['text'] = 'New User By Month';
+        $data['xAxis']['categories'] = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+        $data['series'][0]['data'] = $data_week;
+
+        return $data;
+    }
+
+    private function makeUserDataChartLastMonth()
+    {
+        $data_week[0] = $this->getUserQuantityByWeek(1, 1)[0][1];
+        $data_week[1] = $this->getUserQuantityByWeek(8, 1)[0][1];
+        $data_week[2] = $this->getUserQuantityByWeek(15, 1)[0][1];
+        $data_week[3] = $this->getUserQuantityByWeek(22, 1)[0][1];
 
         $data = $this->getPreConfigChart('users');
         $data['subtitle']['text'] = 'New User By Month';
@@ -229,11 +284,13 @@ class StatisticManager
         return $queryBuilder->getQuery()->getResult();
     }
 
-    private function getUserQuantityByWeek($day)
+    private function getUserQuantityByWeek($day, $last_month=0)
     {
         $queryBuilder = $this->entityManager->createQueryBuilder();
         
-        $currentMonth = date("Y-m");
+        if ($last_month == 0)
+            $currentMonth = date("Y-m");
+        else $currentMonth = date("Y-m", strtotime("first day of previous month")); 
         $currentWeekDay = $currentMonth."-".$day;
         if ($day == 22){
             $currentMonth = date("Y-m")."-01";
@@ -257,6 +314,8 @@ class StatisticManager
     {
         if ($type == 1)
             return $this->makeMoneyDataChartByMonth();
+        if ($type == 2) 
+            return $this->makeMoneyDataChartLastMonth();
         else return $this->makeMoneyDataChartByYear();
     }
 
@@ -267,6 +326,23 @@ class StatisticManager
         $data_week[1]+= $this->getMoneyQuantityByWeek(8)[0][1];
         $data_week[2]+= $this->getMoneyQuantityByWeek(15)[0][1];
         $data_week[3]+= $this->getMoneyQuantityByWeek(22)[0][1];
+
+        $data = $this->getPreConfigChart('moneys');
+        $data['subtitle']['text'] = 'Money By Month';
+
+        $data['xAxis']['categories'] = ['Week 1', 'Week 2', 'Week 3', 'Week 4'];
+        $data['series'][0]['data'] = $data_week;
+
+        return $data;
+    }
+
+    private function makeMoneyDataChartLastMonth()
+    {
+        $data_week = [0, 0, 0, 0];
+        $data_week[0]+= $this->getMoneyQuantityByWeek(1, 1)[0][1];
+        $data_week[1]+= $this->getMoneyQuantityByWeek(8, 1)[0][1];
+        $data_week[2]+= $this->getMoneyQuantityByWeek(15, 1)[0][1];
+        $data_week[3]+= $this->getMoneyQuantityByWeek(22, 1)[0][1];
 
         $data = $this->getPreConfigChart('moneys');
         $data['subtitle']['text'] = 'Money By Month';
@@ -310,11 +386,13 @@ class StatisticManager
         return $queryBuilder->getQuery()->getResult();
     }
 
-    private function getMoneyQuantityByWeek($day)
+    private function getMoneyQuantityByWeek($day, $last_month=0)
     {
         $queryBuilder = $this->entityManager->createQueryBuilder();
         
-        $currentMonth = date("Y-m");
+        if ($last_month == 0)
+            $currentMonth = date("Y-m");
+        else $currentMonth = date("Y-m", strtotime("first day of previous month")); 
         $currentWeekDay = $currentMonth."-".$day;
         if ($day == 22){
             $currentMonth = date("Y-m")."-01";
