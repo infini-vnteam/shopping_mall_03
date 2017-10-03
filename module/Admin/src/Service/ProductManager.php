@@ -136,13 +136,16 @@ class ProductManager
     {   
         //remove comments & related activities
         $comments = $product->getComments();
+
         foreach ($comments as $comment) {
             $activity = $this->entityManager->getRepository(Activity::class)
                 ->findOneBy(['comment_id' => $comment->getId()]);
+
             if($activity != null)
                 $this->entityManager->remove($activity);
             $this->entityManager->remove($comment);
         }
+
 
         //remove reviews & related activities
         $reviews = $product->getReviews();

@@ -82,6 +82,21 @@ class Activity
     protected $type;
 
     /**
+     * @ORM\Column(name="comment_id")
+     */
+    protected $comment_id;
+
+    /**
+     * @ORM\Column(name="order_id")
+     */
+    protected $order_id;
+
+    /**
+     * @ORM\Column(name="review_id")
+     */
+    protected $review_id;
+
+    /**
      * @ORM\Column(name="status")
      */
     protected $status = 1;

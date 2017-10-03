@@ -284,7 +284,7 @@ class ProductController extends AbstractActionController
 
         $this->productManager->softRemoveProduct($product);
 
-        $this->ProductElasticSearchManager->deleteProduct($product);
+        //$this->ProductElasticSearchManager->deleteProduct($product);
         return $this->redirect()->toRoute('products', ['action' => 'list']);
     }
 
@@ -301,7 +301,7 @@ class ProductController extends AbstractActionController
 
         $this->productManager->removeProduct($product);
 
-        $this->ProductElasticSearchManager->deleteProduct($product);
+        //$this->ProductElasticSearchManager->deleteProduct($product);
 
         return $this->redirect()->toRoute('products', ['action' => 'list']);
     }
