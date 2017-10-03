@@ -33,7 +33,7 @@ demos/
 extras/documentation
 
 # Bower
-public/assets
+# public/assets
 
 autorun.rb
 #image
