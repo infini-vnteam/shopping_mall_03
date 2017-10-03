@@ -5,12 +5,14 @@ namespace Elasticsearch\Service;
 class ElasticSearchManager
 {
     private $clientBuilder;
+    private $defaultHandler;
     private $hosts;
     private $enable; // switch on/off elastic search
 
-    public function __construct($clientBuilder, $host)
+    public function __construct($clientBuilder, $defaultHandler, $host)
     {
         $this->clientBuilder = $clientBuilder;
+        $this->defaultHandler = $defaultHandler;
         $this->hosts = $host;
         $config = new \Zend\Config\Config(include PATH_CONFIG . '/autoload/local.php');
         $this->enable = $config->elasticsearch->enable;
@@ -18,7 +20,7 @@ class ElasticSearchManager
 
     public function getClient()
     {
-        return $this->clientBuilder->setHosts($this->hosts)->build();
+        return $this->clientBuilder->setHosts($this->hosts)->setHandler($defaultHandler)->build();
     }
 
     public function createIndex($index)
