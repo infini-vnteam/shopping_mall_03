@@ -20,9 +20,9 @@ return [
                 'params' => [
                     'host' => '127.0.0.1',
                     'port' => '5432',
-                    'user' => 'infinitalk',
+                    'user' => 'postgres',
                     'password' => '12345678',
-                    'dbname' => 'shopping',
+                    'dbname' => 'shopping_mall',
                 ]
             ],
         ],
