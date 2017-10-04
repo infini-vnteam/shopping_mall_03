@@ -32,7 +32,7 @@
                     <a href="<?= $this->url('categories', ['action' => 'edit', 'id' => $category->getId()]) ?>">
                         <i class="glyphicon glyphicon-edit"></i>
                     </a>
-                    <a href="<?= $this->url('categories', ['action' => 'delete', 'id' => $category->getId()]) ?>">
+                    <a onclick="return confirm('Do you really want to delete this category?');" href="<?= $this->url('categories', ['action' => 'delete', 'id' => $category->getId()]) ?>">
                         <i class="glyphicon glyphicon-trash"></i>    
                     </a>
                 </td>

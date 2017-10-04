@@ -41,7 +41,8 @@
                 <a href="<?= $this->url('products', ['action' => 'edit', 'id' => $product->getId()]) ?>">
                     <i class="glyphicon glyphicon-edit"></i>
                 </a>
-                <a href="<?= $this->url('products', ['action' => 'delete', 'id' => $product->getId()]) ?>">
+                <a onclick="return confirm('Do you really want to delete this product?');" 
+                    href="<?= $this->url('products', ['action' => 'delete', 'id' => $product->getId()]) ?>">
                     <i class="glyphicon glyphicon-trash"></i>    
                 </a>
 

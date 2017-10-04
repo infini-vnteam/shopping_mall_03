@@ -56,7 +56,8 @@
                             <tr>
                                 <td colspan="5">Action</td>    
                                 <td>
-                                    <a class="pull-right" href="<?= $this->url('orders',
+                                    <a onclick="return confirm('Change status for this order?');"
+                                        class="pull-right" href="<?= $this->url('orders',
                                         ['action' => 'edit', 'id' => $order->getId()]) ?>">
                                         <i class="fa fa-truck"></i>
                                     </a>

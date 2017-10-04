@@ -280,19 +280,35 @@ class HomeController extends AbstractActionController
     {
         if ($this->getRequest()->isPost()) {
             // set notice to read
+            if (isset($this->sessionContainer->id)) {
+                $user_id = $this->sessionContainer->id;
+                $user = $this->entityManager->getRepository(User::class)->find($user_id);
+                $user->seenNotifications();
+            }
             $this->response->setContent(json_encode([
                 'status' => 'ok',
             ]));
-            return $this->response;
 
+            return $this->response;
         } else {
             if (isset($this->sessionContainer->id)) {
                 $user_id = $this->sessionContainer->id;
                 $user = $this->entityManager->getRepository(User::class)->find($user_id);
                 $unread_notifications = $user->getUnreadNotifications();
+                $read_notifications = $user->getReadNotifications();
+                
+                // get all unread notification
                 $data['unread_count'] = count($unread_notifications);
                 foreach ($unread_notifications as $un) {
                     array_push($data, $un->getNotiContent());
+                }
+
+                // get 20 read_notification
+                $i = 0;
+                foreach ($read_notifications as $n) {
+                    array_push($data['read'], $n->getNotiContent());
+                    $i++;
+                    if($i == 20) break;
                 }
 
                 $this->response->setContent(json_encode($data));

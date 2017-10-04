@@ -65,7 +65,8 @@
                     ['action' => 'view', 'id' => $order->getId()])?>", title="Show details">
                     <i class="glyphicon glyphicon-eye-open"></i>
                 </a>
-                <a href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
+                <a onclick="return confirm('Change status for this order?');" 
+                    href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
                     title="<?php echo status_title($order->getStatus())?>">
                     <i class="<?php echo status_icon($order->getStatus())?>"></i>
                 </a>

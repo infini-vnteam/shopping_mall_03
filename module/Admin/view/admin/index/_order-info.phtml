@@ -31,7 +31,8 @@
                                 ['action' => 'view', 'id' => $order->getId()])?>", title="Show details">
                                 <i class="glyphicon glyphicon-eye-open"></i>
                             </a>
-                            <a href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
+                            <a onclick="return confirm('Change status for this order?');"
+                                href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
                                 title="shipping">
                                 <i class="fa fa-truck"></i>
                             </a>
@@ -79,7 +80,8 @@
                                 ['action' => 'view', 'id' => $order->getId()])?>", title="Show details">
                                 <i class="glyphicon glyphicon-eye-open"></i>
                             </a>
-                            <a href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
+                            <a onclick="return confirm('Change status for this order?');"
+                                href="<?= $this->url('orders', ['action' => 'edit', 'id' => $order->getId()]) ?>",
                                 title="Complete Shipping">
                                 <i class="fa fa-check-square-o"></i>
                             </a>

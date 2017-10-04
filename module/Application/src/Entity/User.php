@@ -8,6 +8,7 @@ use Application\Entity\Order;
 use Application\Entity\Review;
 use Application\Entity\Message;
 use Application\Entity\Address;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -143,17 +144,29 @@ class User
 
     public function getUnreadNotifications() 
     {
-        $unread = [];
-        foreach ($this->notifications as $notify) {
-            if ($notify->getStatus() == Activity::STATUS_UNREAD) {
-                array_push($unread, $notify);
-            }
-        }
-        $unread_notify = new ArrayCollection($unread);
+        $criteria = Criteria::create();
+        $criteria->where(Criteria::expr()->eq('status', Activity::STATUS_UNREAD));
+        $unread_notify = $this->notifications->matching($criteria);
 
         return $unread_notify;
     }
 
+    public function getReadNotifications()
+    {
+        $criteria = Criteria::create();
+        $criteria->where(Criteria::expr()->eq('status', Activity::STATUS_READ));
+        $read_notify = $this->notifications->matching($criteria);
+
+        return $read_notify;
+    }
+
+    public function seenNotifications()
+    {
+        $unread_notify = $this->getUnreadNotifications();
+        foreach ($unread_notify as $un) {
+            $un->setStatus(Activity::STATUS_READ);
+        }
+    }
       
     /**
      * Adds a new notification to this user.

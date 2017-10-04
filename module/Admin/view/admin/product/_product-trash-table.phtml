@@ -36,7 +36,8 @@
                     ['action' => 'restore', 'id' => $product->getId()]) ?>" title="Restore">
                     <i class="fa fa-reply"></i>    
                 </a>
-                <a href="<?= $this->url('products',
+                <a onclick="return confirm('Do you really want to remove this product from trash. It will delete all  related infomation(comment, review, orderitem..)?');"
+                    href="<?= $this->url('products',
                     ['action' => 'harddelete', 'id' => $product->getId()]) ?>" title="Remove from trash">
                     <i class="fa fa-trash" ></i>    
                 </a>
