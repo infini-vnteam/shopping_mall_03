@@ -98,7 +98,6 @@ class CartController extends AbstractActionController
             $order = $this->orderManager->addNewOrder($data_formated, $cart_info);
             $hash = $this->orderManager->encryptByOrderId($order->getId());
 
-
             //$this->mailManager->sendOrder($hash,$data_formated);
 
             $cookie = new \Zend\Http\Header\SetCookie(
